@@ -1,0 +1,40 @@
+services:
+  db:
+    image: mariadb:10.6
+    environment:
+      MYSQL_DATABASE: wp_nlzri
+      MYSQL_USER: wp_hvl0j
+      MYSQL_PASSWORD: "Aunp%^F%WxRo6s28"
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./db:/docker-entrypoint-initdb.d:ro
+    command: >
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_unicode_ci
+    healthcheck:
+      test: ["CMD", "mariadb-admin", "ping", "-proot"]
+      interval: 5s
+      timeout: 3s
+      retries: 30
+
+  wp:
+    image: wordpress:php8.2-apache
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8080:80"
+    volumes:
+      - ./site:/var/www/html
+
+  wpcli:
+    image: wordpress:cli
+    depends_on:
+      - wp
+    volumes:
+      - ./site:/var/www/html
+    working_dir: /var/www/html
+
+volumes:
+  db_data:

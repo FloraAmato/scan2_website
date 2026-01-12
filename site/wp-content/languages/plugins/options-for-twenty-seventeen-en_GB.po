@@ -1,0 +1,528 @@
+# Translation of Plugins - Options for Twenty Seventeen - Stable (latest release) in English (UK)
+# This file is distributed under the same license as the Plugins - Options for Twenty Seventeen - Stable (latest release) package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2019-03-05 09:29:54+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: GlotPress/4.0.0-alpha.3\n"
+"Language: en_GB\n"
+"Project-Id-Version: Plugins - Options for Twenty Seventeen - Stable (latest release)\n"
+
+#: options-for-twenty-seventeen.php:522
+msgid "Change the font weight of the site description."
+msgstr "Change the font weight of the site description."
+
+#: options-for-twenty-seventeen.php:504
+msgid "Change the font size of the site description."
+msgstr "Change the font size of the site description."
+
+#: options-for-twenty-seventeen.php:485
+msgid "Change the font case of the site description."
+msgstr "Change the font case of the site description."
+
+#: options-for-twenty-seventeen.php:467
+msgid "Align the site description to the left, center or right."
+msgstr "Align the site description to the left, centre or right."
+
+#: options-for-twenty-seventeen.php:437
+msgid "Change the font weight of the site title."
+msgstr "Change the font weight of the site title."
+
+#: options-for-twenty-seventeen.php:419
+msgid "Change the font size of the site title."
+msgstr "Change the font size of the site title."
+
+#: options-for-twenty-seventeen.php:406
+msgid "Remove the letter spacing from the site title."
+msgstr "Remove the letter spacing from the site title."
+
+#: options-for-twenty-seventeen.php:387
+msgid "Change the font case of the site title."
+msgstr "Change the font case of the site title."
+
+#: options-for-twenty-seventeen.php:369
+msgid "Align the site title to the left, center or right."
+msgstr "Align the site title to the left, centre or right."
+
+#: options-for-twenty-seventeen.php:1627
+msgid "Turn on \"true parallax\" or turn off parallax effect altogether on front page section featured images and show full image in the usual flow of the page."
+msgstr "Turn on \"true parallax\" or turn off parallax effect altogether on front page section featured images and show full image in the usual flow of the page."
+
+#: options-for-twenty-seventeen.php:1619
+msgid "Set the height of the frontpage section parallax images."
+msgstr "Set the height of the frontpage section parallax images."
+
+#: options-for-twenty-seventeen.php:368
+msgid "Site Title Alignment"
+msgstr "Site Title Alignment"
+
+#: options-for-twenty-seventeen.php:386
+msgid "Site Title Font Case"
+msgstr "Site Title Font Case"
+
+#: options-for-twenty-seventeen.php:405
+msgid "Remove Site Title Letter Spacing"
+msgstr "Remove Site Title Letter Spacing"
+
+#: options-for-twenty-seventeen.php:418
+msgid "Site Title Font Size"
+msgstr "Site Title Font Size"
+
+#: options-for-twenty-seventeen.php:436
+msgid "Site Title Font Weight"
+msgstr "Site Title Font Weight"
+
+#: options-for-twenty-seventeen.php:466
+msgid "Site Description Alignment"
+msgstr "Site Description Alignment"
+
+#: options-for-twenty-seventeen.php:484
+msgid "Site Description Font Case"
+msgstr "Site Description Font Case"
+
+#: options-for-twenty-seventeen.php:503
+msgid "Site Description Font Size"
+msgstr "Site Description Font Size"
+
+#: options-for-twenty-seventeen.php:521
+msgid "Site Description Font Weight"
+msgstr "Site Description Font Weight"
+
+#: options-for-twenty-seventeen.php:1618
+msgid "Panel Image Height"
+msgstr "Panel Image Height"
+
+#: options-for-twenty-seventeen.php:344 options-for-twenty-seventeen.php:375
+#: options-for-twenty-seventeen.php:473 options-for-twenty-seventeen.php:1034
+#: options-for-twenty-seventeen.php:1132 options-for-twenty-seventeen.php:1217
+#: options-for-twenty-seventeen.php:1302
+msgid "Center"
+msgstr "Centre"
+
+#: options-for-twenty-seventeen.php:1787
+msgid "Overlays the image caption onto the featured image."
+msgstr "Overlays the image caption onto the featured image."
+
+#: options-for-twenty-seventeen.php:1786
+msgid "Inject Featured Image Caption"
+msgstr "Inject Featured Image Caption"
+
+#: options-for-twenty-seventeen.php:914
+msgid "Rotates the arrow below a main menu item that has a sub menu."
+msgstr "Rotates the arrow below a main menu item that has a sub menu."
+
+#: options-for-twenty-seventeen.php:913
+msgid "Rotate Sub Menu Arrow"
+msgstr "Rotate Sub Menu Arrow"
+
+#: options-for-twenty-seventeen.php:1714
+msgid "Enable Nivo Captions"
+msgstr "Enable Nivo Captions"
+
+#: options-for-twenty-seventeen.php:1715
+msgid "Overlay slide captions on Nivo Slider."
+msgstr "Overlay slide captions on Nivo Slider."
+
+#: options-for-twenty-seventeen.php:1675
+msgid "This option moves the featured image on single posts and pages to the header and makes the header image the same size as on the home page."
+msgstr "This option moves the featured image on single posts and pages to the header and makes the header image the same size as on the home page."
+
+#: options-for-twenty-seventeen.php:1674
+msgid "Use Featured Image as Header Image"
+msgstr "Use Featured Image as Header Image"
+
+#: options-for-twenty-seventeen.php:1831
+msgid "Fix the social links to the left or right for large screens."
+msgstr "Fix the social links to the left or right for large screens."
+
+#: options-for-twenty-seventeen.php:1830
+msgid "Fix Social Links"
+msgstr "Fix Social Links"
+
+#: options-for-twenty-seventeen.php:806
+msgid "Change the padding above and below links in the main menu."
+msgstr "Change the padding above and below links in the main menu."
+
+#: options-for-twenty-seventeen.php:1747
+msgid "Align the logo in the main menu, if present."
+msgstr "Align the logo in the main menu, if present."
+
+#: options-for-twenty-seventeen.php:738
+msgid "Remove the padding above and below the main menu."
+msgstr "Remove the padding above and below the main menu."
+
+#: options-for-twenty-seventeen.php:737
+msgid "Remove Navigation Vertical Padding"
+msgstr "Remove Navigation Vertical Padding"
+
+#: options-for-twenty-seventeen.php:805
+msgid "Navigation Link Vertical Padding"
+msgstr "Navigation Link Vertical Padding"
+
+#: options-for-twenty-seventeen.php:1746
+msgid "Navigation Logo Alignment"
+msgstr "Navigation Logo Alignment"
+
+#: options-for-twenty-seventeen.php:239 options-for-twenty-seventeen.php:247
+msgid "Remove Link Underlines"
+msgstr "Remove Link Underlines"
+
+#: options-for-twenty-seventeen.php:992
+msgid "Change the padding at the top of the content below the navigation (not on front page)."
+msgstr "Change the padding at the top of the content below the navigation (not on front page)."
+
+#: options-for-twenty-seventeen.php:1803
+msgid "Hide post featured images on Archive pages."
+msgstr "Hide post featured images on Archive pages."
+
+#: options-for-twenty-seventeen.php:1802
+msgid "Hide Archive Featured Images"
+msgstr "Hide Archive Featured Images"
+
+#: options-for-twenty-seventeen.php:1635
+msgid "Fix the \"Back to Top\" link to the bottom right of the browser window."
+msgstr "Fix the \"Back to Top\" link to the bottom right of the browser window."
+
+#: options-for-twenty-seventeen.php:1634
+msgid "Fixed Back to Top Link"
+msgstr "Fixed Back to Top Link"
+
+#: options-for-twenty-seventeen.php:1623
+msgid "Enable featured images in front page section blog page."
+msgstr "Enable featured images in front page section blog page."
+
+#: options-for-twenty-seventeen.php:1622
+msgid "Blog Featured Images"
+msgstr "Blog Featured Images"
+
+#: options-for-twenty-seventeen.php:1695
+msgid "Pause the YouTube video when the user scrolls down. Play again when the user scrolls back to the top of the page."
+msgstr "Pause the YouTube video when the user scrolls down. Play again when the user scrolls back to the top of the page."
+
+#: options-for-twenty-seventeen.php:1691
+msgid "Hide the YouTube video in the header until it has started playing. The header image will be shown instead if there is one."
+msgstr "Hide the YouTube video in the header until it has started playing. The header image will be shown instead if there is one."
+
+#: options-for-twenty-seventeen.php:1694
+msgid "Pause YouTube on Scroll"
+msgstr "Pause YouTube on Scroll"
+
+#: options-for-twenty-seventeen.php:1690
+msgid "Hide YouTube Until Loaded"
+msgstr "Hide YouTube Until Loaded"
+
+#: options-for-twenty-seventeen.php:278
+msgid "Header Width"
+msgstr "Header Width"
+
+#: options-for-twenty-seventeen.php:675
+msgid "Change the width of the main menu."
+msgstr "Change the width of the main menu."
+
+#: options-for-twenty-seventeen.php:121 options-for-twenty-seventeen.php:284
+#: options-for-twenty-seventeen.php:680 options-for-twenty-seventeen.php:951
+#: options-for-twenty-seventeen.php:1486
+msgid "100% (full width)"
+msgstr "100% (full width)"
+
+#: options-for-twenty-seventeen.php:1480
+msgid "Footer Width"
+msgstr "Footer Width"
+
+#: options-for-twenty-seventeen.php:945
+msgid "Content Width"
+msgstr "Content Width"
+
+#: options-for-twenty-seventeen.php:674
+msgid "Navigation Bar Width"
+msgstr "Navigation Bar Width"
+
+#: options-for-twenty-seventeen.php:1826
+msgid "Footer Sidebars"
+msgstr "Footer Sidebars"
+
+#: options-for-twenty-seventeen.php:1727
+msgid "Moves the main menu to the top of the custom header."
+msgstr "Moves the main menu to the top of the custom header."
+
+#: options-for-twenty-seventeen.php:1726
+msgid "Move Navigation Bar to Top"
+msgstr "Move Navigation Bar to Top"
+
+#: options-for-twenty-seventeen.php:927
+msgid "Removes the arrow at the end of the main menu."
+msgstr "Removes the arrow at the end of the main menu."
+
+#: options-for-twenty-seventeen.php:1827
+msgid "Add a third or fourth widget ready sidebar to the footer area of the theme."
+msgstr "Add a third widget ready sidebar to the footer area of the theme."
+
+#: options-for-twenty-seventeen.php:1333
+msgid "Remove the letter spacing from page titles."
+msgstr "Remove the letter spacing from page titles."
+
+#: options-for-twenty-seventeen.php:1332
+msgid "Remove Page Title Letter Spacing"
+msgstr "Remove Page Title Letter Spacing"
+
+#: options-for-twenty-seventeen.php:1065
+msgid "Remove the letter spacing from archive titles."
+msgstr "Remove the letter spacing from archive titles."
+
+#: options-for-twenty-seventeen.php:1394
+msgid "Change the margin height below the page title."
+msgstr "Change the margin height below the page title."
+
+#: options-for-twenty-seventeen.php:1835
+msgid "Make the social links menu items square."
+msgstr "Make the social links menu items square."
+
+#: options-for-twenty-seventeen.php:1364
+msgid "Change the font weight of page titles."
+msgstr "Change the font weight of page titles."
+
+#: options-for-twenty-seventeen.php:1346
+msgid "Change the font size of page titles."
+msgstr "Change the font size of page titles."
+
+#: options-for-twenty-seventeen.php:2947
+msgid "Add widgets here to appear in your footer site info."
+msgstr "Add widgets here to appear in your footer site info."
+
+#: options-for-twenty-seventeen.php:2894
+msgid "Add widgets here to appear in your header."
+msgstr "Add widgets here to appear in your header."
+
+#: options-for-twenty-seventeen.php:2892
+msgid "Header"
+msgstr "Header"
+
+#: options-for-twenty-seventeen.php:1314
+msgid "Change the font case of page titles."
+msgstr "Change the font case of page titles."
+
+#: options-for-twenty-seventeen.php:1266
+msgid "Change the font weight of post titles."
+msgstr "Change the font weight of post titles."
+
+#: options-for-twenty-seventeen.php:1248
+msgid "Change the font size of post titles."
+msgstr "Change the font size of post titles."
+
+#: options-for-twenty-seventeen.php:1229
+msgid "Change the font case of post titles."
+msgstr "Change the font case of post titles."
+
+#: options-for-twenty-seventeen.php:1799
+msgid "Move the featured image into the post content."
+msgstr "Move the featured image into the post content."
+
+#: options-for-twenty-seventeen.php:1096
+msgid "Change the font weight of archive titles."
+msgstr "Change the font weight of archive titles."
+
+#: options-for-twenty-seventeen.php:1078
+msgid "Change the font size of archive titles."
+msgstr "Change the font size of archive titles."
+
+#: options-for-twenty-seventeen.php:392 options-for-twenty-seventeen.php:490
+#: options-for-twenty-seventeen.php:756 options-for-twenty-seventeen.php:1051
+#: options-for-twenty-seventeen.php:1149 options-for-twenty-seventeen.php:1234
+#: options-for-twenty-seventeen.php:1319
+msgid "None"
+msgstr "None"
+
+#: options-for-twenty-seventeen.php:1046
+msgid "Change the font case of archive titles."
+msgstr "Change the font case of archive titles."
+
+#: options-for-twenty-seventeen.php:345 options-for-twenty-seventeen.php:376
+#: options-for-twenty-seventeen.php:474 options-for-twenty-seventeen.php:1035
+#: options-for-twenty-seventeen.php:1133 options-for-twenty-seventeen.php:1218
+#: options-for-twenty-seventeen.php:1303
+msgid "Right"
+msgstr "Right"
+
+#: options-for-twenty-seventeen.php:343 options-for-twenty-seventeen.php:374
+#: options-for-twenty-seventeen.php:472 options-for-twenty-seventeen.php:1033
+#: options-for-twenty-seventeen.php:1131 options-for-twenty-seventeen.php:1216
+#: options-for-twenty-seventeen.php:1301
+msgid "Left"
+msgstr "Left"
+
+#: options-for-twenty-seventeen.php:613
+msgid "Remove Header Background"
+msgstr "Remove Header Background"
+
+#: options-for-twenty-seventeen.php:1687
+msgid "Add a widget ready sidebar to the header area of the theme."
+msgstr "Add a widget ready sidebar to the header area of the theme."
+
+#: options-for-twenty-seventeen.php:219
+msgid "Set the border location for the website container."
+msgstr "Set the border location for the website container."
+
+#: options-for-twenty-seventeen.php:203
+msgid "Double"
+msgstr "Double"
+
+#: options-for-twenty-seventeen.php:202
+msgid "Solid"
+msgstr "Solid"
+
+#: options-for-twenty-seventeen.php:201
+msgid "Dashed"
+msgstr "Dashed"
+
+#: options-for-twenty-seventeen.php:200
+msgid "Dotted"
+msgstr "Dotted"
+
+#: options-for-twenty-seventeen.php:194
+msgid "Set a border style for the website container."
+msgstr "Set a border style for the website container."
+
+#: options-for-twenty-seventeen.php:162
+msgid "Set the width of the website container border."
+msgstr "Set the width of the website container border."
+
+#: options-for-twenty-seventeen.php:116
+msgid "Sets the maximum width of the website container."
+msgstr "Sets the maximum width of the website container."
+
+#: options-for-twenty-seventeen.php:1580
+msgid "Removes the \"Proudly powered by WordPress\" text displayed in the website footer and replaces with the content of the \"Site Info\" widget area."
+msgstr "Removes the \"Proudly powered by WordPress\" text displayed in the website footer and replaces with the content of the \"Site Info\" widget area."
+
+#: options-for-twenty-seventeen.php:224
+msgid "Default (Top, Right, Bottom and Left)"
+msgstr "Default (Top, Right, Bottom and Left)"
+
+#: options-for-twenty-seventeen.php:1296
+msgid "Align the page titles to the left, center or right."
+msgstr "Align the page titles to the left, centre or right."
+
+#: options-for-twenty-seventeen.php:1211
+msgid "Align the post titles to the left, center or right."
+msgstr "Align the post titles to the left, centre or right."
+
+#: options-for-twenty-seventeen.php:1052
+msgid "Capitalize"
+msgstr "Capitalise"
+
+#: options-for-twenty-seventeen.php:1028
+msgid "Align the archive titles to the left, center or right."
+msgstr "Align the archive titles to the left, centre or right."
+
+#: options-for-twenty-seventeen.php:1743
+msgid "Align the navigation menu items to the left, center or right."
+msgstr "Align the navigation menu items to the left, centre or right."
+
+#: options-for-twenty-seventeen.php:115
+msgid "Page Max Width"
+msgstr "Page Max Width"
+
+#: options-for-twenty-seventeen.php:1658
+msgid "Auto Excerpt Posts"
+msgstr "Auto Excerpt Posts"
+
+#: options-for-twenty-seventeen.php:1666
+msgid "Reset Tag Cloud Widget"
+msgstr "Reset Tag Cloud Widget"
+
+#: options-for-twenty-seventeen.php:1686
+msgid "Header Sidebar"
+msgstr "Header Sidebar"
+
+#: options-for-twenty-seventeen.php:551
+msgid "Remove Header Gradient"
+msgstr "Remove Header Gradient"
+
+#: options-for-twenty-seventeen.php:1766
+msgid "Primary Content Area Width"
+msgstr "Primary Content Area Width"
+
+#: options-for-twenty-seventeen.php:978
+msgid "Page Sidebar"
+msgstr "Page Sidebar"
+
+#: options-for-twenty-seventeen.php:225
+msgid "Top and Bottom only"
+msgstr "Top and Bottom only"
+
+#: options-for-twenty-seventeen.php:218
+msgid "Page Border Location"
+msgstr "Page Border Location"
+
+#: options-for-twenty-seventeen.php:193
+msgid "Page Border Style"
+msgstr "Page Border Style"
+
+#: options-for-twenty-seventeen.php:161
+msgid "Page Border Width"
+msgstr "Page Border Width"
+
+#: options-for-twenty-seventeen.php:1638
+msgid "Front Page Section Back to Top Link"
+msgstr "Front Page Section Back to Top Link"
+
+#: options-for-twenty-seventeen.php:1630
+msgid "Back to Top Link"
+msgstr "Back to Top Link"
+
+#: options-for-twenty-seventeen.php:1626
+msgid "Parallax Off"
+msgstr "Parallax Off"
+
+#: options-for-twenty-seventeen.php:1762
+msgid "Match Content and Sidebar Height"
+msgstr "Match Content and Sidebar Height"
+
+#: options-for-twenty-seventeen.php:1763
+msgid "Matches the height of the Blog Sidebar to the Primary Content."
+msgstr "Matches the height of the Blog Sidebar to the Primary Content."
+
+#: options-for-twenty-seventeen.php:226
+msgid "Right and Left only"
+msgstr "Right and Left only"
+
+#: options-for-twenty-seventeen.php:1659
+msgid "Show first 55 words of a post with \"Continue reading\" link on home page and archive pages."
+msgstr "Show first 55 words of a post with \"Continue reading\" link on home page and archive pages."
+
+#: options-for-twenty-seventeen.php:395 options-for-twenty-seventeen.php:493
+#: options-for-twenty-seventeen.php:759 options-for-twenty-seventeen.php:1054
+#: options-for-twenty-seventeen.php:1152 options-for-twenty-seventeen.php:1237
+#: options-for-twenty-seventeen.php:1322
+msgid "Lowercase"
+msgstr "Lowercase"
+
+#: options-for-twenty-seventeen.php:394 options-for-twenty-seventeen.php:492
+#: options-for-twenty-seventeen.php:758 options-for-twenty-seventeen.php:1053
+#: options-for-twenty-seventeen.php:1151 options-for-twenty-seventeen.php:1236
+#: options-for-twenty-seventeen.php:1321
+msgid "Uppercase"
+msgstr "Uppercase"
+
+#: includes/class-ofts-common.php:296
+msgid "Upgrade"
+msgstr "Upgrade"
+
+#. Plugin Name of the plugin
+msgid "Options for Twenty Seventeen"
+msgstr "Options for Twenty Seventeen"
+
+#: options-for-twenty-seventeen.php:3202
+msgid "Twenty Seventeen"
+msgstr "Twenty Seventeen"
+
+#: includes/class-ofts-common.php:278
+msgid "Settings"
+msgstr "Settings"
+
+#. Author URI of the plugin
+msgid "https://webd.uk"
+msgstr "https://webd.uk/"
