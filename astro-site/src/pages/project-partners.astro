@@ -1,0 +1,64 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const partners = [
+  {
+    name: 'Vrije Universiteit Brussel (VUB)',
+    country: 'Belgium',
+    role: 'Coordinator',
+    description: 'Leading research university in Brussels coordinating the SCAN II project.'
+  },
+  {
+    name: 'Univerza v Ljubljani',
+    country: 'Slovenia',
+    role: 'Partner',
+    description: 'University of Ljubljana, one of the oldest and largest universities in Slovenia.'
+  },
+  {
+    name: 'Università degli Studi di Milano',
+    country: 'Italy',
+    role: 'Partner',
+    description: 'University of Milan, a leading Italian public research university.'
+  },
+  {
+    name: 'Universität Wien',
+    country: 'Austria',
+    role: 'Partner',
+    description: 'University of Vienna, one of the oldest universities in the German-speaking world.'
+  },
+  {
+    name: 'Vilniaus Universitetas',
+    country: 'Lithuania',
+    role: 'Partner',
+    description: 'Vilnius University, the oldest and largest Lithuanian higher education institution.'
+  }
+];
+---
+
+<Layout title="Project Partners">
+  <div class="page-header">
+    <div class="container">
+      <h1>Project Partners</h1>
+      <p class="breadcrumb"><a href="/">Home</a> / Partners</p>
+    </div>
+  </div>
+
+  <section class="content">
+    <div class="container">
+      <p>
+        The SCAN II project brings together a consortium of leading European universities and research
+        institutions with expertise in EU civil procedure and enforcement law.
+      </p>
+
+      <div class="card-grid" style="margin-top: 2rem;">
+        {partners.map(partner => (
+          <div class="card">
+            <h3>{partner.name}</h3>
+            <p><strong>{partner.country}</strong> - {partner.role}</p>
+            <p>{partner.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,47 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CountryList from '../components/CountryList.astro';
+---
+
+<Layout title="Network">
+  <div class="page-header">
+    <div class="container">
+      <h1>Network</h1>
+      <p class="breadcrumb"><a href="/">Home</a> / Network</p>
+    </div>
+  </div>
+
+  <section class="content">
+    <div class="container">
+      <p>
+        The SCAN II Network connects academic experts, institutional partners, and practitioners working
+        on EU civil justice and cross-border enforcement across all EU Member States.
+      </p>
+
+      <h2>Academic Board</h2>
+      <p>
+        Our Academic Board consists of leading scholars and researchers specializing in EU civil procedure,
+        enforcement law, and access to justice.
+      </p>
+      <p>
+        <a href="/academic-board" class="btn">View Academic Board</a>
+      </p>
+
+      <h2>Institutional Partners</h2>
+      <p>
+        We collaborate with national enforcement authorities, judicial bodies, and professional organizations
+        across Europe.
+      </p>
+      <p>
+        <a href="/institutional-partners" class="btn">View Institutional Partners</a>
+      </p>
+
+      <h2>EU Member States Coverage</h2>
+      <p>
+        The SCAN II network covers all 27 EU Member States, providing comprehensive information on national
+        enforcement procedures.
+      </p>
+      <CountryList />
+    </div>
+  </section>
+</Layout>
