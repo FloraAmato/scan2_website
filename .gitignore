@@ -1,0 +1,18 @@
+# Environment files with sensitive data
+.env
+
+# Docker volumes
+db_data/
+
+# WordPress uploads (optional - uncomment if you don't want to track uploads)
+# site/wp-content/uploads/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+*.swo

@@ -2,10 +2,10 @@ services:
   db:
     image: mariadb:10.6
     environment:
-      MYSQL_DATABASE: wp_nlzri
-      MYSQL_USER: wp_hvl0j
-      MYSQL_PASSWORD: "Aunp%^F%WxRo6s28"
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     volumes:
       - db_data:/var/lib/mysql
       - ./db:/docker-entrypoint-initdb.d:ro
@@ -13,7 +13,7 @@ services:
       --character-set-server=utf8mb4
       --collation-server=utf8mb4_unicode_ci
     healthcheck:
-      test: ["CMD", "mariadb-admin", "ping", "-proot"]
+      test: ["CMD", "mariadb-admin", "ping", "-p${MYSQL_ROOT_PASSWORD}"]
       interval: 5s
       timeout: 3s
       retries: 30
@@ -24,9 +24,14 @@ services:
       db:
         condition: service_healthy
     ports:
-      - "8080:80"
+      - "${WORDPRESS_PORT:-8080}:80"
     volumes:
       - ./site:/var/www/html
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_NAME: ${MYSQL_DATABASE}
+      WORDPRESS_DB_USER: ${MYSQL_USER}
+      WORDPRESS_DB_PASSWORD: ${MYSQL_PASSWORD}
 
   wpcli:
     image: wordpress:cli
@@ -35,6 +40,11 @@ services:
     volumes:
       - ./site:/var/www/html
     working_dir: /var/www/html
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_NAME: ${MYSQL_DATABASE}
+      WORDPRESS_DB_USER: ${MYSQL_USER}
+      WORDPRESS_DB_PASSWORD: ${MYSQL_PASSWORD}
 
 volumes:
   db_data:
