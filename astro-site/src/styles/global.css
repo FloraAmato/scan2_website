@@ -1,4 +1,14 @@
 /* Global Styles */
+
+/* Twemoji - makes flag emojis work in Chrome/Windows */
+img.emoji {
+  height: 1.2em;
+  width: 1.2em;
+  margin: 0 0.1em;
+  vertical-align: -0.2em;
+  display: inline-block;
+}
+
 :root {
   --color-primary: #1a365d;
   --color-primary-light: #2c5282;
