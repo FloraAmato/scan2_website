@@ -1,6 +1,13 @@
 # Environment files with sensitive data
 .env
 
+# Astro build artifacts (from local testing)
+.astro/
+dist/
+node_modules/
+package-lock.json
+src/env.d.ts
+
 # Docker volumes
 db_data/
 
