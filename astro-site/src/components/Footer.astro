@@ -8,9 +8,10 @@ const currentYear = new Date().getFullYear();
       <div class="footer-section">
         <h3>SCAN II Project</h3>
         <p>Supporting the digitalization of cross-border enforcement of civil claims in Europe.</p>
-        <p class="eu-funding">
-          Co-funded by the European Union's Justice Programme (2021-2027)
-        </p>
+        <div class="eu-funding">
+          <img src="/images/eu-flag.png" alt="European Union" class="eu-flag" />
+          <p>Co-funded by the European Union's Justice Programme (2021-2027)</p>
+        </div>
       </div>
       <div class="footer-section">
         <h3>Quick Links</h3>
@@ -70,8 +71,21 @@ const currentYear = new Date().getFullYear();
 
   .eu-funding {
     margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .eu-funding p {
     font-style: italic;
     opacity: 0.8;
+    margin: 0;
+  }
+
+  .eu-flag {
+    height: 40px;
+    width: auto;
+    flex-shrink: 0;
   }
 
   .footer-section ul {
