@@ -1,0 +1,142 @@
+---
+// Map ISO codes to country slugs
+const countryMap: Record<string, string> = {
+  'AT': 'austria',
+  'BE': 'belgium',
+  'BG': 'bulgaria',
+  'HR': 'croatia',
+  'CY': 'cyprus',
+  'CZ': 'czechia',
+  'DK': 'denmark',
+  'EE': 'estonia',
+  'FI': 'finland',
+  'FR': 'france',
+  'DE': 'germany',
+  'GR': 'greece',
+  'HU': 'hungary',
+  'IE': 'ireland',
+  'IT': 'italy',
+  'LV': 'latvia',
+  'LT': 'lithuania',
+  'LU': 'luxembourg',
+  'MT': 'malta',
+  'NL': 'netherlands',
+  'PL': 'poland',
+  'PT': 'portugal',
+  'RO': 'romania',
+  'SK': 'slovakia',
+  'SI': 'slovenia',
+  'ES': 'spain',
+  'SE': 'sweden',
+};
+
+const euCountries = Object.keys(countryMap);
+---
+
+<div class="map-container">
+  <h3>Click on a country to learn more</h3>
+  <div class="map-wrapper">
+    <object
+      id="europe-map"
+      data="/images/europe.svg"
+      type="image/svg+xml"
+      aria-label="Interactive map of European Union countries"
+    ></object>
+  </div>
+  <p class="map-hint">EU Member States are highlighted in blue</p>
+</div>
+
+<script define:vars={{ countryMap, euCountries }}>
+  document.addEventListener('DOMContentLoaded', () => {
+    const mapObject = document.getElementById('europe-map');
+
+    mapObject?.addEventListener('load', () => {
+      const svgDoc = mapObject.contentDocument;
+      if (!svgDoc) return;
+
+      // Style all EU countries
+      euCountries.forEach(code => {
+        const country = svgDoc.getElementById(code);
+        if (country) {
+          country.style.fill = '#3182ce';
+          country.style.cursor = 'pointer';
+          country.style.transition = 'fill 0.2s, transform 0.2s';
+
+          // Add hover effect
+          country.addEventListener('mouseenter', () => {
+            country.style.fill = '#1a365d';
+          });
+
+          country.addEventListener('mouseleave', () => {
+            country.style.fill = '#3182ce';
+          });
+
+          // Add click handler
+          country.addEventListener('click', () => {
+            const slug = countryMap[code];
+            if (slug) {
+              window.location.href = `/countries/${slug}`;
+            }
+          });
+
+          // Add title for tooltip
+          const title = document.createElementNS('http://www.w3.org/2000/svg', 'title');
+          title.textContent = country.getAttribute('name') || code;
+          country.appendChild(title);
+        }
+      });
+
+      // Style non-EU countries
+      const allPaths = svgDoc.querySelectorAll('path');
+      allPaths.forEach(path => {
+        const id = path.getAttribute('id');
+        if (id && !euCountries.includes(id)) {
+          path.style.fill = '#e2e8f0';
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  .map-container {
+    text-align: center;
+    padding: 2rem 0;
+  }
+
+  .map-container h3 {
+    margin-bottom: 1rem;
+    color: var(--color-primary);
+  }
+
+  .map-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #f7fafc;
+    border-radius: 8px;
+    padding: 1rem;
+    border: 1px solid var(--color-border);
+  }
+
+  #europe-map {
+    width: 100%;
+    height: auto;
+    max-height: 500px;
+  }
+
+  .map-hint {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: var(--color-text-light);
+  }
+
+  @media (max-width: 600px) {
+    .map-wrapper {
+      padding: 0.5rem;
+    }
+
+    #europe-map {
+      max-height: 300px;
+    }
+  }
+</style>

@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import CountryList from '../components/CountryList.astro';
+import EuropeMap from '../components/EuropeMap.astro';
 ---
 
 <Layout title="Home">
@@ -48,6 +49,7 @@ import CountryList from '../components/CountryList.astro';
     <div class="container">
       <h2 class="text-center">EU Member States</h2>
       <p class="text-center text-muted">Explore enforcement procedures by country</p>
+      <EuropeMap />
       <CountryList />
     </div>
   </section>
