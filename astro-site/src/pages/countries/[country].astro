@@ -2,7 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 
 // Country data - easy to customize for your project
-const countries = {
+const countries: Record<string, { name: string; flag: string; capital: string }> = {
   'austria': { name: 'Austria', flag: '🇦🇹', capital: 'Vienna' },
   'belgium': { name: 'Belgium', flag: '🇧🇪', capital: 'Brussels' },
   'bulgaria': { name: 'Bulgaria', flag: '🇧🇬', capital: 'Sofia' },
@@ -33,17 +33,44 @@ const countries = {
 };
 
 export function getStaticPaths() {
-  return Object.keys(countries).map(country => ({
-    params: { country }
+  const countryData: Record<string, { name: string; flag: string; capital: string }> = {
+    'austria': { name: 'Austria', flag: '🇦🇹', capital: 'Vienna' },
+    'belgium': { name: 'Belgium', flag: '🇧🇪', capital: 'Brussels' },
+    'bulgaria': { name: 'Bulgaria', flag: '🇧🇬', capital: 'Sofia' },
+    'croatia': { name: 'Croatia', flag: '🇭🇷', capital: 'Zagreb' },
+    'cyprus': { name: 'Cyprus', flag: '🇨🇾', capital: 'Nicosia' },
+    'czechia': { name: 'Czechia', flag: '🇨🇿', capital: 'Prague' },
+    'denmark': { name: 'Denmark', flag: '🇩🇰', capital: 'Copenhagen' },
+    'estonia': { name: 'Estonia', flag: '🇪🇪', capital: 'Tallinn' },
+    'finland': { name: 'Finland', flag: '🇫🇮', capital: 'Helsinki' },
+    'france': { name: 'France', flag: '🇫🇷', capital: 'Paris' },
+    'germany': { name: 'Germany', flag: '🇩🇪', capital: 'Berlin' },
+    'greece': { name: 'Greece', flag: '🇬🇷', capital: 'Athens' },
+    'hungary': { name: 'Hungary', flag: '🇭🇺', capital: 'Budapest' },
+    'ireland': { name: 'Ireland', flag: '🇮🇪', capital: 'Dublin' },
+    'italy': { name: 'Italy', flag: '🇮🇹', capital: 'Rome' },
+    'latvia': { name: 'Latvia', flag: '🇱🇻', capital: 'Riga' },
+    'lithuania': { name: 'Lithuania', flag: '🇱🇹', capital: 'Vilnius' },
+    'luxembourg': { name: 'Luxembourg', flag: '🇱🇺', capital: 'Luxembourg City' },
+    'malta': { name: 'Malta', flag: '🇲🇹', capital: 'Valletta' },
+    'netherlands': { name: 'Netherlands', flag: '🇳🇱', capital: 'Amsterdam' },
+    'poland': { name: 'Poland', flag: '🇵🇱', capital: 'Warsaw' },
+    'portugal': { name: 'Portugal', flag: '🇵🇹', capital: 'Lisbon' },
+    'romania': { name: 'Romania', flag: '🇷🇴', capital: 'Bucharest' },
+    'slovakia': { name: 'Slovakia', flag: '🇸🇰', capital: 'Bratislava' },
+    'slovenia': { name: 'Slovenia', flag: '🇸🇮', capital: 'Ljubljana' },
+    'spain': { name: 'Spain', flag: '🇪🇸', capital: 'Madrid' },
+    'sweden': { name: 'Sweden', flag: '🇸🇪', capital: 'Stockholm' },
+  };
+
+  return Object.entries(countryData).map(([slug, data]) => ({
+    params: { country: slug },
+    props: { countryData: data }
   }));
 }
 
 const { country } = Astro.params;
-const countryData = countries[country as keyof typeof countries];
-
-if (!countryData) {
-  return Astro.redirect('/404');
-}
+const { countryData } = Astro.props;
 ---
 
 <Layout title={countryData.name}>
