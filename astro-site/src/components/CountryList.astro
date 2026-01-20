@@ -28,11 +28,13 @@ const countries = [
   { slug: 'spain', name: 'Spain', flag: '🇪🇸' },
   { slug: 'sweden', name: 'Sweden', flag: '🇸🇪' },
 ];
+
+const base = import.meta.env.BASE_URL;
 ---
 
 <div class="country-grid">
   {countries.map(country => (
-    <a href={`/countries/${country.slug}`} class="country-link">
+    <a href={`${base}countries/${country.slug}/`} class="country-link">
       <span class="country-flag">{country.flag}</span>
       <span>{country.name}</span>
     </a>

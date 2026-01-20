@@ -1,6 +1,10 @@
 services:
-  web:
+  scan2_website:
     build: .
-    ports:
-      - "${PORT:-8080}:80"
     restart: unless-stopped
+    networks:
+      - edge
+
+networks:
+  edge:
+    external: true

@@ -1,12 +1,13 @@
 ---
 import Layout from '../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL;
 ---
 
 <Layout title="About">
   <div class="page-header">
     <div class="container">
       <h1>About SCAN II</h1>
-      <p class="breadcrumb"><a href="/">Home</a> / About</p>
+      <p class="breadcrumb"><a href={base}>Home</a> / About</p>
     </div>
   </div>
 

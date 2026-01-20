@@ -63,13 +63,15 @@ const partners = [
     url: 'https://www.fbe.org',
   }
 ];
+
+const base = import.meta.env.BASE_URL;
 ---
 
 <Layout title="Project Partners">
   <div class="page-header">
     <div class="container">
       <h1>Project Partners</h1>
-      <p class="breadcrumb"><a href="/">Home</a> / Partners</p>
+      <p class="breadcrumb"><a href={base}>Home</a> / Partners</p>
     </div>
   </div>
 
