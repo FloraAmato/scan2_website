@@ -16,39 +16,124 @@ import Layout from '../layouts/Layout.astro';
         Stay updated with the latest news, events, and developments from the SCAN II project.
       </p>
 
-      <h2>Upcoming Events</h2>
-      <div class="card" style="margin: 1rem 0;">
-        <h3>SCAN II Final Conference</h3>
-        <p class="text-muted">Date to be announced</p>
+      <div class="news-item">
+        <h2>Final Conference SCAN II Project</h2>
+        <p class="event-date">22-23 February 2024 | Brussels, Belgium</p>
+
         <p>
-          The final conference will present the results of the SCAN II project and discuss the future
-          of cross-border enforcement in the EU.
+          The Final Conference of the SCAN II Project marked the culmination of our journey with groundbreaking
+          discussions and insights. This event highlighted the possibility to ensure consumer's access to justice
+          in small claims proceedings through an innovative digital platform.
+        </p>
+
+        <div class="event-details">
+          <p><strong>Location:</strong> European Committee of the Regions, Rue Belliard 101; Hoek 38, Rue de Louvain 38, Brussels</p>
+        </div>
+
+        <p>
+          The conference featured an incredible lineup of speakers including Kim Van der Borght, Paul Nemitz,
+          Rimantas Simaitis, Milda Markevičiūtė, Tatjana Josipovic, Thomas Hoffmann, Paola Giacalone,
+          Stefano Menini, Nadia Mana, Paola Pendenza, Maria Dymitruk, Alina Ontanu, Francesca Medda,
+          Annapaola Voto, Nicolas Kyriakides, Michele Angelo Lupoi, Fulvio Maria Palombino, Stefaan Voet,
+          Pietro Ortolani, Marco Farina, Alan Uzelac, Magdalena Jankowska-Gilberg, Rhonson Salim,
+          Elena D'Alessandro, Tatjana Zoroska Kamilovska, Daša Tičar, Lana Gotvan, Clémence Dossier,
+          Gioia Arnone, Seun Lari-Williams, Jachin Van Doninck, Gina Gioia, Sajedeh Salehi, Marco Giacalone,
+          and many more experts in the field.
+        </p>
+
+        <p>
+          This was an unparalleled opportunity to engage with experts and enthusiasts alike, share knowledge,
+          and network with leaders in the field of digitalization of justice.
         </p>
       </div>
 
-      <h2>Past Events</h2>
-      <div class="card" style="margin: 1rem 0;">
-        <h3>Project Kick-off Meeting</h3>
-        <p class="text-muted">Brussels, Belgium</p>
+      <div class="news-item">
+        <h2>Final Conference Video</h2>
         <p>
-          The SCAN II project consortium held its kick-off meeting to launch the project activities.
+          Watch the recording of the SCAN II Project Final Conference:
         </p>
+        <div class="video-container">
+          <iframe
+            src="https://www.youtube.com/embed/u6mJtTJMBbY"
+            title="FINAL CONFERENCE SCAN 2 PROJECT"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen>
+          </iframe>
+        </div>
       </div>
 
-      <h2>News</h2>
-      <div class="card" style="margin: 1rem 0;">
-        <h3>SCAN2 Platform Launch</h3>
+      <div class="news-item">
+        <h2>SCAN2 Platform Launch</h2>
         <p>
           The SCAN2 e-platform is now available, providing comprehensive information on enforcement
           procedures across EU Member States.
         </p>
-        <a href="/scan2-platform">Learn more &rarr;</a>
+        <p>
+          <a href="https://portal.scan2.vub.be" class="btn btn-accent" target="_blank" rel="noopener noreferrer">Access SCAN2 Platform</a>
+        </p>
       </div>
-
-      <h2>Subscribe to Updates</h2>
-      <p>
-        For the latest news and updates, follow us on our social media channels or contact us directly.
-      </p>
     </div>
   </section>
 </Layout>
+
+<style>
+  .news-item {
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .news-item:last-child {
+    border-bottom: none;
+  }
+
+  .news-item h2 {
+    margin-bottom: 0.5rem;
+  }
+
+  .event-date {
+    color: var(--color-accent);
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  .event-details {
+    background: var(--color-background-alt);
+    padding: 1rem;
+    border-radius: 6px;
+    margin: 1rem 0;
+  }
+
+  .event-details p {
+    margin: 0.5rem 0;
+  }
+
+  .event-details p:first-child {
+    margin-top: 0;
+  }
+
+  .event-details p:last-child {
+    margin-bottom: 0;
+  }
+
+  .video-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    margin-top: 1rem;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #000;
+  }
+
+  .video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+</style>
