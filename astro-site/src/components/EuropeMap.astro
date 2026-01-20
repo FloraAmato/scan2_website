@@ -222,6 +222,8 @@ const euCountries = Object.keys(countryData);
 
       const svg = container.querySelector('svg');
       if (svg) {
+        // Adjust viewBox to focus on EU countries (crop eastern regions)
+        svg.setAttribute('viewBox', '150 50 700 600');
         svg.setAttribute('width', '100%');
         svg.setAttribute('height', '100%');
         svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
@@ -231,14 +233,14 @@ const euCountries = Object.keys(countryData);
         euCountries.forEach(code => {
           const country = svg.getElementById(code);
           if (country) {
-            country.style.fill = '#0CF2C8';
+            country.style.fill = '#3182ce';
             country.style.cursor = 'pointer';
             country.style.transition = 'fill 0.2s';
 
             const data = countryData[code];
 
             country.addEventListener('mouseenter', (e) => {
-              country.style.fill = '#4357AD';
+              country.style.fill = '#1a365d';
               if (tooltip && data) {
                 tooltip.innerHTML = `
                   <div class="tooltip-header">${data.name}</div>
@@ -284,7 +286,7 @@ const euCountries = Object.keys(countryData);
             });
 
             country.addEventListener('mouseleave', () => {
-              country.style.fill = '#0CF2C8';
+              country.style.fill = '#3182ce';
               if (tooltip) {
                 tooltip.style.display = 'none';
               }
@@ -372,7 +374,7 @@ const euCountries = Object.keys(countryData);
 
 <style is:global>
   .tooltip-header {
-    background: var(--color-primary, #4357AD);
+    background: var(--color-primary, #1a365d);
     color: white;
     padding: 0.75rem 1rem;
     font-weight: 600;

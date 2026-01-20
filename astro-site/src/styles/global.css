@@ -10,10 +10,9 @@ img.emoji {
 }
 
 :root {
-  --color-primary: #4357AD;
-  --color-primary-light: #5a6fc2;
-  --color-accent: #0CF2C8;
-  --color-accent-secondary: #D6D84F;
+  --color-primary: #1a365d;
+  --color-primary-light: #2c5282;
+  --color-accent: #3182ce;
   --color-text: #2d3748;
   --color-text-light: #718096;
   --color-background: #ffffff;
@@ -236,13 +235,13 @@ h3 { font-size: 1.5rem; }
 }
 
 .btn-accent {
-  background: var(--color-accent-secondary);
-  color: #2d3748;
+  background: #0CF2C8;
+  color: #1a365d;
 }
 
 .btn-accent:hover {
-  background: #c0c247;
-  color: #2d3748;
+  background: #0ad9b3;
+  color: #1a365d;
 }
 
 /* Tables */
