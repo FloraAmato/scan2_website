@@ -234,6 +234,14 @@ h3 { font-size: 1.5rem; }
   color: white;
 }
 
+.btn-accent {
+  background: #e67e22;
+}
+
+.btn-accent:hover {
+  background: #d35400;
+}
+
 /* Tables */
 table {
   width: 100%;
