@@ -1,166 +1,189 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import countriesData from '../../data/countries.json';
 
-// Country data - easy to customize for your project
-const countries: Record<string, { name: string; flag: string; capital: string }> = {
-  'austria': { name: 'Austria', flag: '🇦🇹', capital: 'Vienna' },
-  'belgium': { name: 'Belgium', flag: '🇧🇪', capital: 'Brussels' },
-  'bulgaria': { name: 'Bulgaria', flag: '🇧🇬', capital: 'Sofia' },
-  'croatia': { name: 'Croatia', flag: '🇭🇷', capital: 'Zagreb' },
-  'cyprus': { name: 'Cyprus', flag: '🇨🇾', capital: 'Nicosia' },
-  'czechia': { name: 'Czechia', flag: '🇨🇿', capital: 'Prague' },
-  'denmark': { name: 'Denmark', flag: '🇩🇰', capital: 'Copenhagen' },
-  'estonia': { name: 'Estonia', flag: '🇪🇪', capital: 'Tallinn' },
-  'finland': { name: 'Finland', flag: '🇫🇮', capital: 'Helsinki' },
-  'france': { name: 'France', flag: '🇫🇷', capital: 'Paris' },
-  'germany': { name: 'Germany', flag: '🇩🇪', capital: 'Berlin' },
-  'greece': { name: 'Greece', flag: '🇬🇷', capital: 'Athens' },
-  'hungary': { name: 'Hungary', flag: '🇭🇺', capital: 'Budapest' },
-  'ireland': { name: 'Ireland', flag: '🇮🇪', capital: 'Dublin' },
-  'italy': { name: 'Italy', flag: '🇮🇹', capital: 'Rome' },
-  'latvia': { name: 'Latvia', flag: '🇱🇻', capital: 'Riga' },
-  'lithuania': { name: 'Lithuania', flag: '🇱🇹', capital: 'Vilnius' },
-  'luxembourg': { name: 'Luxembourg', flag: '🇱🇺', capital: 'Luxembourg City' },
-  'malta': { name: 'Malta', flag: '🇲🇹', capital: 'Valletta' },
-  'netherlands': { name: 'Netherlands', flag: '🇳🇱', capital: 'Amsterdam' },
-  'poland': { name: 'Poland', flag: '🇵🇱', capital: 'Warsaw' },
-  'portugal': { name: 'Portugal', flag: '🇵🇹', capital: 'Lisbon' },
-  'romania': { name: 'Romania', flag: '🇷🇴', capital: 'Bucharest' },
-  'slovakia': { name: 'Slovakia', flag: '🇸🇰', capital: 'Bratislava' },
-  'slovenia': { name: 'Slovenia', flag: '🇸🇮', capital: 'Ljubljana' },
-  'spain': { name: 'Spain', flag: '🇪🇸', capital: 'Madrid' },
-  'sweden': { name: 'Sweden', flag: '🇸🇪', capital: 'Stockholm' },
+// Country metadata
+const countryMeta: Record<string, { flag: string }> = {
+  'austria': { flag: '🇦🇹' },
+  'belgium': { flag: '🇧🇪' },
+  'bulgaria': { flag: '🇧🇬' },
+  'croatia': { flag: '🇭🇷' },
+  'cyprus': { flag: '🇨🇾' },
+  'czechia': { flag: '🇨🇿' },
+  'denmark': { flag: '🇩🇰' },
+  'estonia': { flag: '🇪🇪' },
+  'finland': { flag: '🇫🇮' },
+  'france': { flag: '🇫🇷' },
+  'germany': { flag: '🇩🇪' },
+  'greece': { flag: '🇬🇷' },
+  'hungary': { flag: '🇭🇺' },
+  'ireland': { flag: '🇮🇪' },
+  'italy': { flag: '🇮🇹' },
+  'latvia': { flag: '🇱🇻' },
+  'lithuania': { flag: '🇱🇹' },
+  'luxembourg': { flag: '🇱🇺' },
+  'malta': { flag: '🇲🇹' },
+  'netherlands': { flag: '🇳🇱' },
+  'poland': { flag: '🇵🇱' },
+  'portugal': { flag: '🇵🇹' },
+  'romania': { flag: '🇷🇴' },
+  'slovakia': { flag: '🇸🇰' },
+  'slovenia': { flag: '🇸🇮' },
+  'spain': { flag: '🇪🇸' },
+  'sweden': { flag: '🇸🇪' },
 };
 
 export function getStaticPaths() {
-  const countryData: Record<string, { name: string; flag: string; capital: string }> = {
-    'austria': { name: 'Austria', flag: '🇦🇹', capital: 'Vienna' },
-    'belgium': { name: 'Belgium', flag: '🇧🇪', capital: 'Brussels' },
-    'bulgaria': { name: 'Bulgaria', flag: '🇧🇬', capital: 'Sofia' },
-    'croatia': { name: 'Croatia', flag: '🇭🇷', capital: 'Zagreb' },
-    'cyprus': { name: 'Cyprus', flag: '🇨🇾', capital: 'Nicosia' },
-    'czechia': { name: 'Czechia', flag: '🇨🇿', capital: 'Prague' },
-    'denmark': { name: 'Denmark', flag: '🇩🇰', capital: 'Copenhagen' },
-    'estonia': { name: 'Estonia', flag: '🇪🇪', capital: 'Tallinn' },
-    'finland': { name: 'Finland', flag: '🇫🇮', capital: 'Helsinki' },
-    'france': { name: 'France', flag: '🇫🇷', capital: 'Paris' },
-    'germany': { name: 'Germany', flag: '🇩🇪', capital: 'Berlin' },
-    'greece': { name: 'Greece', flag: '🇬🇷', capital: 'Athens' },
-    'hungary': { name: 'Hungary', flag: '🇭🇺', capital: 'Budapest' },
-    'ireland': { name: 'Ireland', flag: '🇮🇪', capital: 'Dublin' },
-    'italy': { name: 'Italy', flag: '🇮🇹', capital: 'Rome' },
-    'latvia': { name: 'Latvia', flag: '🇱🇻', capital: 'Riga' },
-    'lithuania': { name: 'Lithuania', flag: '🇱🇹', capital: 'Vilnius' },
-    'luxembourg': { name: 'Luxembourg', flag: '🇱🇺', capital: 'Luxembourg City' },
-    'malta': { name: 'Malta', flag: '🇲🇹', capital: 'Valletta' },
-    'netherlands': { name: 'Netherlands', flag: '🇳🇱', capital: 'Amsterdam' },
-    'poland': { name: 'Poland', flag: '🇵🇱', capital: 'Warsaw' },
-    'portugal': { name: 'Portugal', flag: '🇵🇹', capital: 'Lisbon' },
-    'romania': { name: 'Romania', flag: '🇷🇴', capital: 'Bucharest' },
-    'slovakia': { name: 'Slovakia', flag: '🇸🇰', capital: 'Bratislava' },
-    'slovenia': { name: 'Slovenia', flag: '🇸🇮', capital: 'Ljubljana' },
-    'spain': { name: 'Spain', flag: '🇪🇸', capital: 'Madrid' },
-    'sweden': { name: 'Sweden', flag: '🇸🇪', capital: 'Stockholm' },
-  };
-
-  return Object.entries(countryData).map(([slug, data]) => ({
+  return Object.keys(countryMeta).map((slug) => ({
     params: { country: slug },
-    props: { countryData: data }
   }));
 }
 
 const { country } = Astro.params;
-const { countryData } = Astro.props;
+const meta = countryMeta[country as string] || { flag: '🇪🇺' };
+const data = (countriesData as Record<string, { name: string; content: string }>)[country as string];
+
+const countryName = data?.name || country?.charAt(0).toUpperCase() + country?.slice(1) || 'Unknown';
+const rawContent = data?.content || '';
+
+// Process the HTML content to clean it up
+function processContent(html: string): string {
+  // Fix common HTML issues
+  let processed = html
+    // Convert WordPress footnote links
+    .replace(/\[(\d+)\]/g, '<sup>[$1]</sup>')
+    // Ensure proper spacing
+    .replace(/<\/li>\s*<li>/g, '</li><li>')
+    // Clean up empty paragraphs
+    .replace(/<p>\s*<\/p>/g, '')
+    // Fix quote marks
+    .replace(/&amp;/g, '&');
+
+  return processed;
+}
+
+const content = processContent(rawContent);
+const hasContent = content.length > 0;
 ---
 
-<Layout title={countryData.name}>
+<Layout title={`${countryName} - ESCP Enforcement`}>
   <div class="page-header">
     <div class="container">
-      <h1><span style="font-size: 1.2em; margin-right: 0.5rem;">{countryData.flag}</span> {countryData.name}</h1>
+      <h1><span class="flag">{meta.flag}</span> {countryName}</h1>
       <p class="breadcrumb">
-        <a href="/">Home</a> / <a href="/network">Network</a> / {countryData.name}
+        <a href="/">Home</a> / <a href="/#countries">Countries</a> / {countryName}
       </p>
     </div>
   </div>
 
   <section class="content">
     <div class="container">
-      <h2>Status of Digitalisation of ESCP Enforcement Procedures</h2>
-      <p>
-        Information about the digitalisation status of European Small Claims Procedure (ESCP)
-        enforcement in {countryData.name}.
-      </p>
+      {hasContent ? (
+        <div class="country-content" set:html={content} />
+      ) : (
+        <div class="no-content">
+          <p>Information about ESCP enforcement procedures in {countryName} is not yet available.</p>
+          <p>Please check back later or visit the SCAN2 Platform for more information.</p>
+        </div>
+      )}
 
-      <div class="info-table">
-        <table>
-          <tr>
-            <th>Country</th>
-            <td>{countryData.name}</td>
-          </tr>
-          <tr>
-            <th>Capital</th>
-            <td>{countryData.capital}</td>
-          </tr>
-          <tr>
-            <th>EU Member</th>
-            <td>Yes</td>
-          </tr>
-        </table>
-      </div>
-
-      <h2>Status of Digitalisation of EOP Enforcement Procedures</h2>
-      <p>
-        Information about the digitalisation status of European Order for Payment (EOP)
-        enforcement in {countryData.name}.
-      </p>
-
-      <h2>General Information</h2>
-      <p>
-        For detailed information about enforcement procedures in {countryData.name}, including
-        competent authorities, costs, and timelines, please visit the SCAN2 Platform.
-      </p>
-
-      <div class="card" style="background: var(--color-background-alt); margin: 2rem 0; text-align: center;">
-        <h3>Access Detailed Information</h3>
-        <p>View the complete enforcement guide for {countryData.name} on the SCAN2 Platform.</p>
+      <div class="card platform-cta">
+        <h3>Access the SCAN2 Platform</h3>
+        <p>For the most up-to-date and detailed information about enforcement procedures in {countryName}, visit the SCAN2 Platform.</p>
         <a href="https://portal.scan2.vub.be" class="btn" target="_blank" rel="noopener noreferrer">
-          Go to SCAN2 Portal &rarr;
+          Go to SCAN2 Portal
         </a>
       </div>
 
-      <h2>Competent Authorities</h2>
-      <ul>
-        <li>Courts responsible for enforcement</li>
-        <li>Bailiffs / Enforcement officers</li>
-        <li>Relevant ministries and agencies</li>
-      </ul>
-
-      <h2>Key Information</h2>
-      <ul>
-        <li><strong>Language:</strong> Official language(s) of {countryData.name}</li>
-        <li><strong>Currency:</strong> Euro (EUR) / National currency</li>
-        <li><strong>Legal System:</strong> Civil law tradition</li>
-      </ul>
-
-      <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--color-border);">
-        <p>
-          <a href="/network">&larr; Back to Network</a>
-        </p>
+      <div class="back-link">
+        <a href="/">&larr; Back to Home</a>
       </div>
     </div>
   </section>
 </Layout>
 
 <style>
-  .info-table {
+  .flag {
+    font-size: 1.2em;
+    margin-right: 0.5rem;
+  }
+
+  .country-content {
+    line-height: 1.8;
+  }
+
+  .country-content :global(strong),
+  .country-content :global(b) {
+    color: var(--color-primary);
+  }
+
+  .country-content :global(em strong),
+  .country-content :global(strong em) {
+    display: block;
+    font-size: 1.3rem;
+    margin: 2rem 0 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--color-accent);
+  }
+
+  .country-content :global(ol) {
+    list-style: none;
+    padding-left: 0;
+    counter-reset: section;
+  }
+
+  .country-content :global(ol > li) {
     margin: 1.5rem 0;
   }
 
-  .info-table table {
-    max-width: 500px;
+  .country-content :global(ol > li > strong) {
+    font-size: 1.1rem;
+    display: block;
+    margin-bottom: 0.5rem;
   }
 
-  .info-table th {
-    width: 150px;
+  .country-content :global(ul) {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+  }
+
+  .country-content :global(ul li) {
+    margin: 0.5rem 0;
+  }
+
+  .country-content :global(a) {
+    word-break: break-word;
+  }
+
+  .country-content :global(sup) {
+    font-size: 0.75em;
+    color: var(--color-accent);
+  }
+
+  .no-content {
+    background: var(--color-background-alt);
+    padding: 2rem;
+    border-radius: 8px;
+    text-align: center;
+  }
+
+  .platform-cta {
+    background: var(--color-background-alt);
+    margin: 3rem 0;
+    text-align: center;
+  }
+
+  .platform-cta h3 {
+    margin-bottom: 1rem;
+  }
+
+  .platform-cta p {
+    margin-bottom: 1.5rem;
+  }
+
+  .back-link {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-border);
   }
 </style>
