@@ -203,13 +203,7 @@ const euCountries = Object.keys(countryData);
 
 <div class="map-container">
   <h3>Interactive EU Map</h3>
-  <p class="map-subtitle">Click a country for details. Use controls or scroll to zoom, drag to pan.</p>
-
-  <div class="map-controls">
-    <button id="zoom-in" class="map-btn" title="Zoom in">+</button>
-    <button id="zoom-out" class="map-btn" title="Zoom out">-</button>
-    <button id="reset-view" class="map-btn" title="Reset view">Reset</button>
-  </div>
+  <p class="map-subtitle">Click a country for details. Scroll to zoom, drag to pan.</p>
 
   <div class="map-wrapper" id="map-wrapper">
     <div class="map-content" id="map-content">
@@ -227,9 +221,6 @@ const euCountries = Object.keys(countryData);
     const mapContent = document.getElementById('map-content');
     const mapWrapper = document.getElementById('map-wrapper');
     const tooltip = document.getElementById('tooltip');
-    const zoomInBtn = document.getElementById('zoom-in');
-    const zoomOutBtn = document.getElementById('zoom-out');
-    const resetBtn = document.getElementById('reset-view');
 
     // State
     let scale = 1;
@@ -367,11 +358,6 @@ const euCountries = Object.keys(countryData);
       updateTransform();
     }
 
-    // Button controls
-    zoomInBtn?.addEventListener('click', () => zoom(scaleStep));
-    zoomOutBtn?.addEventListener('click', () => zoom(-scaleStep));
-    resetBtn?.addEventListener('click', resetView);
-
     // Mouse wheel zoom
     mapWrapper?.addEventListener('wheel', (e) => {
       e.preventDefault();
@@ -478,28 +464,6 @@ const euCountries = Object.keys(countryData);
     color: var(--color-text-light);
   }
 
-  .map-controls {
-    display: flex;
-    justify-content: center;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
-  }
-
-  .map-btn {
-    padding: 0.5rem 1rem;
-    border: 1px solid var(--color-border);
-    background: white;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: background 0.2s, border-color 0.2s;
-  }
-
-  .map-btn:hover {
-    background: #f7fafc;
-    border-color: var(--color-primary);
-  }
-
   .map-wrapper {
     position: relative;
     max-width: 900px;
@@ -554,15 +518,6 @@ const euCountries = Object.keys(countryData);
   @media (max-width: 600px) {
     .map-wrapper {
       height: 350px;
-    }
-
-    .map-controls {
-      gap: 0.25rem;
-    }
-
-    .map-btn {
-      padding: 0.4rem 0.8rem;
-      font-size: 0.9rem;
     }
 
     .tooltip {
