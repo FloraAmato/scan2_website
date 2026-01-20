@@ -33,8 +33,17 @@ const countryMeta: Record<string, { flag: string }> = {
   'sweden': { flag: '🇸🇪' },
 };
 
+const countrySlugs = Object.keys(countryMeta);
+
 export function getStaticPaths() {
-  return Object.keys(countryMeta).map((slug) => ({
+  const slugs = [
+    'austria', 'belgium', 'bulgaria', 'croatia', 'cyprus', 'czechia',
+    'denmark', 'estonia', 'finland', 'france', 'germany', 'greece',
+    'hungary', 'ireland', 'italy', 'latvia', 'lithuania', 'luxembourg',
+    'malta', 'netherlands', 'poland', 'portugal', 'romania', 'slovakia',
+    'slovenia', 'spain', 'sweden'
+  ];
+  return slugs.map((slug) => ({
     params: { country: slug },
   }));
 }
