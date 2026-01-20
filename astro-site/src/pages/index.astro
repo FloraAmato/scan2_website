@@ -19,64 +19,21 @@ import EuropeMap from '../components/EuropeMap.astro';
   <section class="section">
     <div class="container">
       <h2 class="text-center">About the Project</h2>
-      <p class="text-center text-muted" style="max-width: 800px; margin: 0 auto 2rem;">
+      <p class="text-center text-muted" style="max-width: 800px; margin: 0 auto;">
         The SCAN II Project is developed upon the results of the SCAN project and aims at contributing to
         the correct and coherent implementation of EU civil procedures in cross-border cases,
         enhancing access to justice through the further development of the SCAN e-platform and database.
       </p>
-
-      <div class="card-grid">
-        <div class="card">
-          <h3>Research</h3>
-          <p>Comprehensive analysis of ESCP and EOP enforcement procedures across all EU Member States.</p>
-          <a href="/research-outputs">View Research &rarr;</a>
-        </div>
-        <div class="card">
-          <h3>Platform</h3>
-          <p>Access the SCAN2 e-platform with detailed information on national enforcement procedures.</p>
-          <a href="https://portal.scan2.vub.be" target="_blank" rel="noopener noreferrer">Access Platform &rarr;</a>
-        </div>
-        <div class="card">
-          <h3>Partners</h3>
-          <p>Meet our network of academic experts and institutional partners across Europe.</p>
-          <a href="/project-partners">View Partners &rarr;</a>
-        </div>
-      </div>
     </div>
   </section>
 
   <section class="section section-alt">
     <div class="container">
-      <h2 class="text-center">EU Member States</h2>
-      <p class="text-center text-muted">Explore enforcement procedures by country</p>
+      <p class="text-center text-muted" style="max-width: 600px; margin: 0 auto 2rem;">
+        Explore enforcement procedures by country - click on a country for detailed information.
+      </p>
       <EuropeMap />
       <CountryList />
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <h2 class="text-center">Project Partners</h2>
-      <p class="text-center text-muted" style="max-width: 700px; margin: 0 auto 2rem;">
-        The SCAN II project brings together leading universities and research institutions across Europe.
-      </p>
-      <div class="card-grid">
-        <div class="card">
-          <h3>VUB</h3>
-          <p>Vrije Universiteit Brussel, Belgium - Project Coordinator</p>
-        </div>
-        <div class="card">
-          <h3>University of Ljubljana</h3>
-          <p>Slovenia</p>
-        </div>
-        <div class="card">
-          <h3>University of Milan</h3>
-          <p>Italy</p>
-        </div>
-      </div>
-      <p class="text-center" style="margin-top: 2rem;">
-        <a href="/project-partners" class="btn">View All Partners</a>
-      </p>
     </div>
   </section>
 </Layout>
