@@ -14,44 +14,83 @@ import Layout from '../layouts/Layout.astro';
     <div class="container">
       <p>
         The SCAN II project produces comprehensive research on the enforcement of EU civil procedures
-        across Member States. Our research outputs include comparative studies, national reports, and
-        best practice guidelines.
+        across Member States. Below you can find our main research outputs.
       </p>
 
-      <h2>Comparative Study</h2>
-      <p>
-        The "Comparative and Analytical Study of Best Practices" examines enforcement procedures for
-        ESCP and EOP judgments across all EU Member States, identifying best practices and areas for
-        improvement.
-      </p>
-      <p>
-        <a href="/practices-guides" class="btn">View Comparative Study</a>
-      </p>
+      <div class="research-item">
+        <h2>Comparative and Analytical Study</h2>
+        <p>
+          The "Comparative and Analytical Study of Best Practices" examines enforcement procedures for
+          ESCP judgments across all EU Member States, identifying best practices and areas for
+          improvement in cross-border enforcement.
+        </p>
+        <p>
+          <a href="/documents/comparative-study.pdf" class="btn" download>Download Comparative Study (PDF)</a>
+        </p>
+      </div>
 
-      <h2>National Reports</h2>
-      <p>
-        Detailed reports on enforcement procedures in each EU Member State, covering:
-      </p>
-      <ul>
-        <li>Status of digitalization of ESCP enforcement procedures</li>
-        <li>Status of digitalization of EOP enforcement procedures</li>
-        <li>General information on national enforcement systems</li>
-        <li>Competent authorities and their roles</li>
-        <li>Costs and timelines</li>
-      </ul>
+      <div class="research-item">
+        <h2>SCAN2 Platform Walkthrough</h2>
+        <p>
+          Watch a demonstration of the SCAN2 Platform by the DIKE research team, showcasing how to navigate
+          and use the platform for accessing enforcement information across EU Member States.
+        </p>
+        <div class="video-container">
+          <iframe
+            src="https://www.youtube.com/embed/2czOLvXHggY"
+            title="SCAN 2 - Small Claims Analysis Net - The newest platform"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen>
+          </iframe>
+        </div>
+      </div>
 
-      <h2>Publications</h2>
-      <p>
-        Academic publications and policy papers produced by the project consortium members.
-      </p>
-
-      <h2>Access the Platform</h2>
-      <p>
-        For detailed information on enforcement procedures in each Member State, visit our SCAN2 Platform.
-      </p>
-      <p>
-        <a href="/scan2-platform" class="btn">Access SCAN2 Platform</a>
-      </p>
+      <div class="research-item">
+        <h2>Access the Platform</h2>
+        <p>
+          For detailed information on enforcement procedures in each Member State, visit our SCAN2 Platform.
+        </p>
+        <p>
+          <a href="https://portal.scan2.vub.be" class="btn btn-accent" target="_blank" rel="noopener noreferrer">Access SCAN2 Platform</a>
+        </p>
+      </div>
     </div>
   </section>
 </Layout>
+
+<style>
+  .research-item {
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .research-item:last-child {
+    border-bottom: none;
+  }
+
+  .research-item h2 {
+    margin-bottom: 1rem;
+  }
+
+  .video-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    margin-top: 1rem;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #000;
+  }
+
+  .video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+</style>
