@@ -1,201 +1,32 @@
 ---
-// Map ISO codes to country slugs and tooltip data
-const countryData: Record<string, {
-  slug: string;
-  name: string;
-  competentCourt: string;
-  legalFees: string;
-  applicableLaw: string;
-}> = {
-  'AT': {
-    slug: 'austria',
-    name: 'Austria',
-    competentCourt: 'District Courts (Bezirksgerichte)',
-    legalFees: 'Based on claim value, starting from EUR 25',
-    applicableLaw: 'Enforcement Code (Exekutionsordnung)'
-  },
-  'BE': {
-    slug: 'belgium',
-    name: 'Belgium',
-    competentCourt: 'Bailiffs (Huissiers de Justice)',
-    legalFees: 'Fixed tariff based on claim amount',
-    applicableLaw: 'Judicial Code (Code Judiciaire)'
-  },
-  'BG': {
-    slug: 'bulgaria',
-    name: 'Bulgaria',
-    competentCourt: 'Private Enforcement Agents',
-    legalFees: 'Percentage of claim value (1-2%)',
-    applicableLaw: 'Private Enforcement Agents Act'
-  },
-  'HR': {
-    slug: 'croatia',
-    name: 'Croatia',
-    competentCourt: 'Municipal Courts',
-    legalFees: 'Court fees based on claim value',
-    applicableLaw: 'Enforcement Act (Ovrsni zakon)'
-  },
-  'CY': {
-    slug: 'cyprus',
-    name: 'Cyprus',
-    competentCourt: 'District Courts and Bailiffs',
-    legalFees: 'Calculated by court registrar based on judgment value',
-    applicableLaw: 'Civil Procedure Rules'
-  },
-  'CZ': {
-    slug: 'czechia',
-    name: 'Czechia',
-    competentCourt: 'District Courts or Court Bailiffs',
-    legalFees: 'CZK 1,000 (EUR 40) for claims up to CZK 20,000',
-    applicableLaw: 'Code of Civil Procedure & Enforcement Act'
-  },
-  'DK': {
-    slug: 'denmark',
-    name: 'Denmark',
-    competentCourt: 'Bailiff Court (Fogedret)',
-    legalFees: 'DKK 750 (approx. EUR 100) basic fee',
-    applicableLaw: 'Administration of Justice Act'
-  },
-  'EE': {
-    slug: 'estonia',
-    name: 'Estonia',
-    competentCourt: 'Independent Bailiffs (Enforcement Agents)',
-    legalFees: 'Fee for commencement + principal fee based on claim',
-    applicableLaw: 'Code of Enforcement Procedure (TMS)'
-  },
-  'FI': {
-    slug: 'finland',
-    name: 'Finland',
-    competentCourt: 'Enforcement Authority (Ulosottovirasto)',
-    legalFees: 'Handling fee EUR 10-65 depending on procedure',
-    applicableLaw: 'Enforcement Code (Ulosottokaari)'
-  },
-  'FR': {
-    slug: 'france',
-    name: 'France',
-    competentCourt: 'Judicial Officers (Huissiers de Justice)',
-    legalFees: 'Regulated tariff based on claim amount',
-    applicableLaw: 'Code of Civil Enforcement Procedures'
-  },
-  'DE': {
-    slug: 'germany',
-    name: 'Germany',
-    competentCourt: 'Bailiffs (Gerichtsvollzieher) and Local Courts',
-    legalFees: 'EUR 26 base fee + additional costs',
-    applicableLaw: 'Code of Civil Procedure (ZPO)'
-  },
-  'GR': {
-    slug: 'greece',
-    name: 'Greece',
-    competentCourt: 'Judicial Officers (Dikastikoi Epimelites)',
-    legalFees: 'Based on type of enforcement action',
-    applicableLaw: 'Code of Civil Procedure'
-  },
-  'HU': {
-    slug: 'hungary',
-    name: 'Hungary',
-    competentCourt: 'Independent Court Bailiffs',
-    legalFees: 'Percentage of claim (1% min HUF 5,000)',
-    applicableLaw: 'Act on Judicial Enforcement (LIII/1994)'
-  },
-  'IE': {
-    slug: 'ireland',
-    name: 'Ireland',
-    competentCourt: 'County Registrar / Sheriff',
-    legalFees: 'Court fees vary by enforcement method',
-    applicableLaw: 'Enforcement of Court Orders Act'
-  },
-  'IT': {
-    slug: 'italy',
-    name: 'Italy',
-    competentCourt: 'Judicial Officers (Ufficiali Giudiziari)',
-    legalFees: 'Registration tax EUR 200 + additional fees',
-    applicableLaw: 'Code of Civil Procedure'
-  },
-  'LV': {
-    slug: 'latvia',
-    name: 'Latvia',
-    competentCourt: 'Certified Bailiffs (Zverinati tiesu izpilditaji)',
-    legalFees: 'Fixed fee + percentage of recovered amount',
-    applicableLaw: 'Civil Procedure Law'
-  },
-  'LT': {
-    slug: 'lithuania',
-    name: 'Lithuania',
-    competentCourt: 'Bailiffs (Antstoliai)',
-    legalFees: 'EUR 20-60 execution fee + percentage',
-    applicableLaw: 'Code of Civil Procedure'
-  },
-  'LU': {
-    slug: 'luxembourg',
-    name: 'Luxembourg',
-    competentCourt: 'Bailiffs (Huissiers de Justice)',
-    legalFees: 'Regulated tariff system',
-    applicableLaw: 'New Code of Civil Procedure'
-  },
-  'MT': {
-    slug: 'malta',
-    name: 'Malta',
-    competentCourt: 'Court Executive Officers',
-    legalFees: 'Based on enforcement type and claim value',
-    applicableLaw: 'Code of Organization and Civil Procedure'
-  },
-  'NL': {
-    slug: 'netherlands',
-    name: 'Netherlands',
-    competentCourt: 'Bailiffs (Gerechtsdeurwaarders)',
-    legalFees: 'Regulated tariff, costs recoverable from debtor',
-    applicableLaw: 'Code of Civil Procedure (Rv)'
-  },
-  'PL': {
-    slug: 'poland',
-    name: 'Poland',
-    competentCourt: 'Court Bailiffs (Komornicy Sadowi)',
-    legalFees: '10% of enforced claim (min PLN 150)',
-    applicableLaw: 'Code of Civil Procedure & Bailiffs Act'
-  },
-  'PT': {
-    slug: 'portugal',
-    name: 'Portugal',
-    competentCourt: 'Enforcement Agents (Agentes de Execucao)',
-    legalFees: 'Fixed fee EUR 51 + variable fees',
-    applicableLaw: 'Code of Civil Procedure'
-  },
-  'RO': {
-    slug: 'romania',
-    name: 'Romania',
-    competentCourt: 'Bailiffs (Executori Judecatoresti)',
-    legalFees: 'Fixed + percentage fee (2-10% of claim)',
-    applicableLaw: 'Code of Civil Procedure'
-  },
-  'SK': {
-    slug: 'slovakia',
-    name: 'Slovakia',
-    competentCourt: 'Court Executors (Sudni Exekutori)',
-    legalFees: 'Percentage of recovered amount',
-    applicableLaw: 'Execution Code (Exekucny poriadok)'
-  },
-  'SI': {
-    slug: 'slovenia',
-    name: 'Slovenia',
-    competentCourt: 'Local Courts (Okrajna sodisca)',
-    legalFees: 'Court fees based on claim value',
-    applicableLaw: 'Enforcement and Security Act (ZIZ)'
-  },
-  'ES': {
-    slug: 'spain',
-    name: 'Spain',
-    competentCourt: 'Court of First Instance (Juzgado de Primera Instancia)',
-    legalFees: 'No court fees for enforcement',
-    applicableLaw: 'Civil Procedure Act (LEC)'
-  },
-  'SE': {
-    slug: 'sweden',
-    name: 'Sweden',
-    competentCourt: 'Enforcement Authority (Kronofogden)',
-    legalFees: 'SEK 600 (approx. EUR 55) application fee',
-    applicableLaw: 'Enforcement Code (Utsokningsbalken)'
-  },
+// Map ISO codes to country slugs and names (Denmark excluded - no content)
+const countryData: Record<string, { slug: string; name: string }> = {
+  'AT': { slug: 'austria', name: 'Austria' },
+  'BE': { slug: 'belgium', name: 'Belgium' },
+  'BG': { slug: 'bulgaria', name: 'Bulgaria' },
+  'HR': { slug: 'croatia', name: 'Croatia' },
+  'CY': { slug: 'cyprus', name: 'Cyprus' },
+  'CZ': { slug: 'czechia', name: 'Czechia' },
+  'EE': { slug: 'estonia', name: 'Estonia' },
+  'FI': { slug: 'finland', name: 'Finland' },
+  'FR': { slug: 'france', name: 'France' },
+  'DE': { slug: 'germany', name: 'Germany' },
+  'GR': { slug: 'greece', name: 'Greece' },
+  'HU': { slug: 'hungary', name: 'Hungary' },
+  'IE': { slug: 'ireland', name: 'Ireland' },
+  'IT': { slug: 'italy', name: 'Italy' },
+  'LV': { slug: 'latvia', name: 'Latvia' },
+  'LT': { slug: 'lithuania', name: 'Lithuania' },
+  'LU': { slug: 'luxembourg', name: 'Luxembourg' },
+  'MT': { slug: 'malta', name: 'Malta' },
+  'NL': { slug: 'netherlands', name: 'Netherlands' },
+  'PL': { slug: 'poland', name: 'Poland' },
+  'PT': { slug: 'portugal', name: 'Portugal' },
+  'RO': { slug: 'romania', name: 'Romania' },
+  'SK': { slug: 'slovakia', name: 'Slovakia' },
+  'SI': { slug: 'slovenia', name: 'Slovenia' },
+  'ES': { slug: 'spain', name: 'Spain' },
+  'SE': { slug: 'sweden', name: 'Sweden' },
 };
 
 const euCountries = Object.keys(countryData);
@@ -245,21 +76,7 @@ const euCountries = Object.keys(countryData);
               if (tooltip && data) {
                 tooltip.innerHTML = `
                   <div class="tooltip-header">${data.name}</div>
-                  <div class="tooltip-content">
-                    <div class="tooltip-row">
-                      <span class="tooltip-label">Competent Court:</span>
-                      <span class="tooltip-value">${data.competentCourt}</span>
-                    </div>
-                    <div class="tooltip-row">
-                      <span class="tooltip-label">Legal Fees:</span>
-                      <span class="tooltip-value">${data.legalFees}</span>
-                    </div>
-                    <div class="tooltip-row">
-                      <span class="tooltip-label">Applicable Law:</span>
-                      <span class="tooltip-value">${data.applicableLaw}</span>
-                    </div>
-                  </div>
-                  <div class="tooltip-footer">Click for full details</div>
+                  <div class="tooltip-footer">Click for details</div>
                 `;
                 tooltip.style.display = 'block';
               }
@@ -355,8 +172,7 @@ const euCountries = Object.keys(countryData);
     padding: 0;
     z-index: 1000;
     pointer-events: none;
-    min-width: 280px;
-    max-width: 320px;
+    min-width: 150px;
     font-size: 0.9rem;
     text-align: left;
   }
@@ -379,38 +195,12 @@ const euCountries = Object.keys(countryData);
     border-radius: 7px 7px 0 0;
   }
 
-  .tooltip-content {
-    padding: 0.75rem 1rem;
-  }
-
-  .tooltip-row {
-    margin-bottom: 0.5rem;
-  }
-
-  .tooltip-row:last-child {
-    margin-bottom: 0;
-  }
-
-  .tooltip-label {
-    display: block;
-    font-weight: 600;
-    color: #4a5568;
-    font-size: 0.8rem;
-    margin-bottom: 0.15rem;
-  }
-
-  .tooltip-value {
-    display: block;
-    color: #2d3748;
-  }
-
   .tooltip-footer {
     background: #f7fafc;
     color: #718096;
     padding: 0.5rem 1rem;
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     text-align: center;
-    border-top: 1px solid #e2e8f0;
     border-radius: 0 0 7px 7px;
   }
 </style>
