@@ -202,105 +202,261 @@ const euCountries = Object.keys(countryData);
 ---
 
 <div class="map-container">
-  <h3>Click on a country to learn more</h3>
-  <div class="map-wrapper">
-    <object
-      id="europe-map"
-      data="/images/europe.svg"
-      type="image/svg+xml"
-      aria-label="Interactive map of European Union countries"
-    ></object>
-    <div id="tooltip" class="tooltip" style="display: none;"></div>
+  <h3>Interactive EU Map</h3>
+  <p class="map-subtitle">Click a country for details. Use controls or scroll to zoom, drag to pan.</p>
+
+  <div class="map-controls">
+    <button id="zoom-in" class="map-btn" title="Zoom in">+</button>
+    <button id="zoom-out" class="map-btn" title="Zoom out">-</button>
+    <button id="reset-view" class="map-btn" title="Reset view">Reset</button>
   </div>
-  <p class="map-hint">EU Member States are highlighted in blue. Hover for summary info.</p>
+
+  <div class="map-wrapper" id="map-wrapper">
+    <div class="map-content" id="map-content">
+      <div id="svg-container"></div>
+    </div>
+    <div id="tooltip" class="tooltip"></div>
+  </div>
+
+  <p class="map-hint">EU Member States are highlighted in blue</p>
 </div>
 
 <script define:vars={{ countryData, euCountries }}>
-  document.addEventListener('DOMContentLoaded', () => {
-    const mapObject = document.getElementById('europe-map');
+  document.addEventListener('DOMContentLoaded', async () => {
+    const container = document.getElementById('svg-container');
+    const mapContent = document.getElementById('map-content');
+    const mapWrapper = document.getElementById('map-wrapper');
     const tooltip = document.getElementById('tooltip');
+    const zoomInBtn = document.getElementById('zoom-in');
+    const zoomOutBtn = document.getElementById('zoom-out');
+    const resetBtn = document.getElementById('reset-view');
 
-    mapObject?.addEventListener('load', () => {
-      const svgDoc = mapObject.contentDocument;
-      if (!svgDoc) return;
+    // State
+    let scale = 1;
+    let translateX = 0;
+    let translateY = 0;
+    let isDragging = false;
+    let startX = 0;
+    let startY = 0;
+    let lastTranslateX = 0;
+    let lastTranslateY = 0;
 
-      // Style all EU countries
-      euCountries.forEach(code => {
-        const country = svgDoc.getElementById(code);
-        if (country) {
-          country.style.fill = '#3182ce';
-          country.style.cursor = 'pointer';
-          country.style.transition = 'fill 0.2s';
+    const minScale = 0.5;
+    const maxScale = 4;
+    const scaleStep = 0.3;
 
-          const data = countryData[code];
+    // Load SVG
+    try {
+      const response = await fetch('/images/europe.svg');
+      const svgText = await response.text();
+      container.innerHTML = svgText;
 
-          // Add hover effect with tooltip
-          country.addEventListener('mouseenter', (e) => {
-            country.style.fill = '#1a365d';
+      const svg = container.querySelector('svg');
+      if (svg) {
+        svg.setAttribute('width', '100%');
+        svg.setAttribute('height', '100%');
+        svg.style.display = 'block';
 
-            if (tooltip && data) {
-              tooltip.innerHTML = `
-                <div class="tooltip-header">${data.name}</div>
-                <div class="tooltip-content">
-                  <div class="tooltip-row">
-                    <span class="tooltip-label">Competent Court:</span>
-                    <span class="tooltip-value">${data.competentCourt}</span>
-                  </div>
-                  <div class="tooltip-row">
-                    <span class="tooltip-label">Legal Fees:</span>
-                    <span class="tooltip-value">${data.legalFees}</span>
-                  </div>
-                  <div class="tooltip-row">
-                    <span class="tooltip-label">Applicable Law:</span>
-                    <span class="tooltip-value">${data.applicableLaw}</span>
-                  </div>
-                </div>
-                <div class="tooltip-footer">Click for full details</div>
-              `;
-              tooltip.style.display = 'block';
-            }
-          });
-
-          country.addEventListener('mousemove', (e) => {
-            if (tooltip) {
-              const mapWrapper = document.querySelector('.map-wrapper');
-              const rect = mapWrapper.getBoundingClientRect();
-              const x = e.clientX - rect.left + 15;
-              const y = e.clientY - rect.top + 15;
-
-              // Prevent tooltip from going off the right edge
-              const tooltipWidth = tooltip.offsetWidth;
-              const maxX = rect.width - tooltipWidth - 10;
-
-              tooltip.style.left = Math.min(x, maxX) + 'px';
-              tooltip.style.top = y + 'px';
-            }
-          });
-
-          country.addEventListener('mouseleave', () => {
+        // Style EU countries
+        euCountries.forEach(code => {
+          const country = svg.getElementById(code);
+          if (country) {
             country.style.fill = '#3182ce';
-            if (tooltip) {
-              tooltip.style.display = 'none';
-            }
-          });
+            country.style.cursor = 'pointer';
+            country.style.transition = 'fill 0.2s';
 
-          // Add click handler
-          country.addEventListener('click', () => {
-            if (data?.slug) {
-              window.location.href = `/countries/${data.slug}`;
-            }
-          });
-        }
-      });
+            const data = countryData[code];
 
-      // Style non-EU countries
-      const allPaths = svgDoc.querySelectorAll('path');
-      allPaths.forEach(path => {
-        const id = path.getAttribute('id');
-        if (id && !euCountries.includes(id)) {
-          path.style.fill = '#e2e8f0';
-        }
-      });
+            country.addEventListener('mouseenter', (e) => {
+              country.style.fill = '#1a365d';
+              if (tooltip && data) {
+                tooltip.innerHTML = `
+                  <div class="tooltip-header">${data.name}</div>
+                  <div class="tooltip-content">
+                    <div class="tooltip-row">
+                      <span class="tooltip-label">Competent Court:</span>
+                      <span class="tooltip-value">${data.competentCourt}</span>
+                    </div>
+                    <div class="tooltip-row">
+                      <span class="tooltip-label">Legal Fees:</span>
+                      <span class="tooltip-value">${data.legalFees}</span>
+                    </div>
+                    <div class="tooltip-row">
+                      <span class="tooltip-label">Applicable Law:</span>
+                      <span class="tooltip-value">${data.applicableLaw}</span>
+                    </div>
+                  </div>
+                  <div class="tooltip-footer">Click for full details</div>
+                `;
+                tooltip.style.display = 'block';
+              }
+            });
+
+            country.addEventListener('mousemove', (e) => {
+              if (tooltip) {
+                const rect = mapWrapper.getBoundingClientRect();
+                let x = e.clientX - rect.left + 15;
+                let y = e.clientY - rect.top + 15;
+
+                const tooltipWidth = tooltip.offsetWidth;
+                const tooltipHeight = tooltip.offsetHeight;
+
+                if (x + tooltipWidth > rect.width - 10) {
+                  x = e.clientX - rect.left - tooltipWidth - 15;
+                }
+                if (y + tooltipHeight > rect.height - 10) {
+                  y = e.clientY - rect.top - tooltipHeight - 15;
+                }
+
+                tooltip.style.left = Math.max(10, x) + 'px';
+                tooltip.style.top = Math.max(10, y) + 'px';
+              }
+            });
+
+            country.addEventListener('mouseleave', () => {
+              country.style.fill = '#3182ce';
+              if (tooltip) {
+                tooltip.style.display = 'none';
+              }
+            });
+
+            country.addEventListener('click', (e) => {
+              if (!isDragging && data?.slug) {
+                window.location.href = `/countries/${data.slug}`;
+              }
+            });
+          }
+        });
+
+        // Style non-EU countries
+        const allPaths = svg.querySelectorAll('path');
+        allPaths.forEach(path => {
+          const id = path.getAttribute('id');
+          if (id && !euCountries.includes(id)) {
+            path.style.fill = '#e2e8f0';
+          }
+        });
+      }
+    } catch (error) {
+      console.error('Failed to load SVG:', error);
+      container.innerHTML = '<p>Failed to load map</p>';
+    }
+
+    // Transform functions
+    function updateTransform() {
+      mapContent.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+    }
+
+    function zoom(delta, centerX, centerY) {
+      const oldScale = scale;
+      scale = Math.min(maxScale, Math.max(minScale, scale + delta));
+
+      if (centerX !== undefined && centerY !== undefined) {
+        const scaleRatio = scale / oldScale;
+        translateX = centerX - (centerX - translateX) * scaleRatio;
+        translateY = centerY - (centerY - translateY) * scaleRatio;
+      }
+
+      updateTransform();
+    }
+
+    function resetView() {
+      scale = 1;
+      translateX = 0;
+      translateY = 0;
+      updateTransform();
+    }
+
+    // Button controls
+    zoomInBtn?.addEventListener('click', () => zoom(scaleStep));
+    zoomOutBtn?.addEventListener('click', () => zoom(-scaleStep));
+    resetBtn?.addEventListener('click', resetView);
+
+    // Mouse wheel zoom
+    mapWrapper?.addEventListener('wheel', (e) => {
+      e.preventDefault();
+      const rect = mapWrapper.getBoundingClientRect();
+      const centerX = e.clientX - rect.left;
+      const centerY = e.clientY - rect.top;
+      const delta = e.deltaY > 0 ? -scaleStep : scaleStep;
+      zoom(delta, centerX, centerY);
+    }, { passive: false });
+
+    // Mouse drag
+    mapWrapper?.addEventListener('mousedown', (e) => {
+      if (e.target.closest('path')) return; // Let country clicks work
+      isDragging = true;
+      startX = e.clientX;
+      startY = e.clientY;
+      lastTranslateX = translateX;
+      lastTranslateY = translateY;
+      mapWrapper.style.cursor = 'grabbing';
+    });
+
+    document.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      const dx = e.clientX - startX;
+      const dy = e.clientY - startY;
+      translateX = lastTranslateX + dx;
+      translateY = lastTranslateY + dy;
+      updateTransform();
+    });
+
+    document.addEventListener('mouseup', () => {
+      isDragging = false;
+      if (mapWrapper) mapWrapper.style.cursor = 'grab';
+    });
+
+    // Touch support
+    let lastTouchDistance = 0;
+    let lastTouchCenter = { x: 0, y: 0 };
+
+    mapWrapper?.addEventListener('touchstart', (e) => {
+      if (e.touches.length === 1) {
+        isDragging = true;
+        startX = e.touches[0].clientX;
+        startY = e.touches[0].clientY;
+        lastTranslateX = translateX;
+        lastTranslateY = translateY;
+      } else if (e.touches.length === 2) {
+        isDragging = false;
+        const dx = e.touches[1].clientX - e.touches[0].clientX;
+        const dy = e.touches[1].clientY - e.touches[0].clientY;
+        lastTouchDistance = Math.sqrt(dx * dx + dy * dy);
+        lastTouchCenter = {
+          x: (e.touches[0].clientX + e.touches[1].clientX) / 2,
+          y: (e.touches[0].clientY + e.touches[1].clientY) / 2
+        };
+      }
+    }, { passive: true });
+
+    mapWrapper?.addEventListener('touchmove', (e) => {
+      if (e.touches.length === 1 && isDragging) {
+        const dx = e.touches[0].clientX - startX;
+        const dy = e.touches[0].clientY - startY;
+        translateX = lastTranslateX + dx;
+        translateY = lastTranslateY + dy;
+        updateTransform();
+      } else if (e.touches.length === 2) {
+        e.preventDefault();
+        const dx = e.touches[1].clientX - e.touches[0].clientX;
+        const dy = e.touches[1].clientY - e.touches[0].clientY;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+
+        const rect = mapWrapper.getBoundingClientRect();
+        const centerX = (e.touches[0].clientX + e.touches[1].clientX) / 2 - rect.left;
+        const centerY = (e.touches[0].clientY + e.touches[1].clientY) / 2 - rect.top;
+
+        const scaleChange = (distance - lastTouchDistance) * 0.01;
+        zoom(scaleChange, centerX, centerY);
+
+        lastTouchDistance = distance;
+      }
+    }, { passive: false });
+
+    mapWrapper?.addEventListener('touchend', () => {
+      isDragging = false;
+      lastTouchDistance = 0;
     });
   });
 </script>
@@ -312,29 +468,70 @@ const euCountries = Object.keys(countryData);
   }
 
   .map-container h3 {
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
     color: var(--color-primary);
+  }
+
+  .map-subtitle {
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    color: var(--color-text-light);
+  }
+
+  .map-controls {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .map-btn {
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--color-border);
+    background: white;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.2s, border-color 0.2s;
+  }
+
+  .map-btn:hover {
+    background: #f7fafc;
+    border-color: var(--color-primary);
   }
 
   .map-wrapper {
     position: relative;
-    max-width: 800px;
+    max-width: 900px;
+    height: 500px;
     margin: 0 auto;
     background: #f7fafc;
     border-radius: 8px;
-    padding: 1rem;
     border: 1px solid var(--color-border);
+    overflow: hidden;
+    cursor: grab;
   }
 
-  #europe-map {
+  .map-content {
     width: 100%;
-    height: 500px;
-    object-fit: contain;
-    object-position: center;
+    height: 100%;
+    transform-origin: 0 0;
+    transition: transform 0.1s ease-out;
+  }
+
+  #svg-container {
+    width: 100%;
+    height: 100%;
+  }
+
+  #svg-container svg {
+    width: 100%;
+    height: 100%;
   }
 
   .tooltip {
     position: absolute;
+    display: none;
     background: white;
     border: 1px solid #e2e8f0;
     border-radius: 8px;
@@ -356,11 +553,16 @@ const euCountries = Object.keys(countryData);
 
   @media (max-width: 600px) {
     .map-wrapper {
-      padding: 0.5rem;
+      height: 350px;
     }
 
-    #europe-map {
-      height: 300px;
+    .map-controls {
+      gap: 0.25rem;
+    }
+
+    .map-btn {
+      padding: 0.4rem 0.8rem;
+      font-size: 0.9rem;
     }
 
     .tooltip {
