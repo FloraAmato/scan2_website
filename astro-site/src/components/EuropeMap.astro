@@ -222,7 +222,8 @@ const euCountries = Object.keys(countryData);
 
       const svg = container.querySelector('svg');
       if (svg) {
-        // Remove fixed dimensions, let SVG use its natural size
+        // Adjust viewBox to crop empty space on the left (Iceland starts at ~240)
+        svg.setAttribute('viewBox', '200 0 800 684');
         svg.removeAttribute('width');
         svg.removeAttribute('height');
         svg.style.display = 'block';
