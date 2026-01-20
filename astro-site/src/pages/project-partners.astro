@@ -6,51 +6,61 @@ const partners = [
     name: 'Vrije Universiteit Brussel (VUB)',
     country: 'Belgium',
     role: 'Coordinator',
+    url: 'https://www.vub.be',
   },
   {
     name: 'Univerza v Ljubljani (UL)',
     country: 'Slovenia',
     role: 'Partner',
+    url: 'https://www.uni-lj.si',
   },
   {
     name: 'Sveučilište u Zagrebu – Pravni Fakultet (UniZg)',
     country: 'Croatia',
     role: 'Partner',
+    url: 'https://www.pravo.unizg.hr',
   },
   {
     name: 'Vilniaus Universitetas (VU)',
     country: 'Lithuania',
     role: 'Partner',
+    url: 'https://www.vu.lt',
   },
   {
     name: 'Adiconsum Associazione Difesa Consumatori APS (ADICONSUM)',
     country: 'Italy',
     role: 'Partner',
+    url: 'https://www.adiconsum.it',
   },
   {
     name: 'Fondation de la Chambre Européenne des Huissiers de Justice (EUBF)',
     country: 'Belgium',
     role: 'Partner',
+    url: 'https://www.uihj.com',
   },
   {
     name: 'Fondazione Bruno Kessler (FBK)',
     country: 'Italy',
     role: 'Partner',
+    url: 'https://www.fbk.eu',
   },
   {
     name: 'Tallinna Tehnikaülikool (TalTech)',
     country: 'Estonia',
     role: 'Partner',
+    url: 'https://taltech.ee',
   },
   {
     name: 'Zentrum für Europäischen Verbraucherschutz e.V. (ZEV)',
     country: 'Germany',
     role: 'Partner',
+    url: 'https://www.evz.de',
   },
   {
     name: 'Fédération des Barreaux d\'Europe (FBE)',
     country: 'France',
     role: 'Partner',
+    url: 'https://www.fbe.org',
   }
 ];
 ---
@@ -73,12 +83,28 @@ const partners = [
 
       <div class="card-grid" style="margin-top: 2rem;">
         {partners.map(partner => (
-          <div class="card">
+          <a href={partner.url} class="card partner-card" target="_blank" rel="noopener noreferrer">
             <h3>{partner.name}</h3>
             <p><strong>{partner.country}</strong> {partner.role === 'Coordinator' ? '– Coordinator' : ''}</p>
-          </div>
+          </a>
         ))}
       </div>
     </div>
   </section>
 </Layout>
+
+<style>
+  .partner-card {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .partner-card h3 {
+    color: var(--color-primary);
+    transition: color 0.2s;
+  }
+
+  .partner-card:hover h3 {
+    color: var(--color-accent);
+  }
+</style>
