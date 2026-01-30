@@ -1,10 +1,12 @@
-# SCAN II Website (Astro)
+# DEUCE Website (Astro)
 
-A fast, modern static website for the SCAN II project, built with Astro.
+A fast, modern static website for the DEUCE project, built with Astro.
+
+DEUCE focuses on improving the enforcement of judicial decisions in cross-border pecuniary claims through European Enforcement Orders (EEO) and European Orders for Payment (EOP).
 
 ## Quick Start
 
-### Development
+### Development (npm)
 
 ```bash
 # Install dependencies
@@ -24,16 +26,60 @@ npm run build
 npm run preview
 ```
 
-### Docker Deployment
+## Local Testing with Docker
 
-```bash
-# Build and run with Docker
-docker-compose up -d
+For local testing without Caddy/edge network:
 
-# Or build manually
-docker build -t scan2-website .
-docker run -p 8080:80 scan2-website
-```
+1. **Comment out the base path** in `astro.config.mjs`:
+   ```js
+   // base: '/deuce',
+   ```
+
+2. **Update docker-compose.yml** for local mode:
+   ```yaml
+   services:
+     deuce_website:
+       build: .
+       restart: unless-stopped
+       ports:
+         - "8080:80"
+       # networks:
+       #   - edge
+
+   # networks:
+   #   edge:
+   #     external: true
+   ```
+
+3. **Build and run**:
+   ```bash
+   docker-compose up -d --build
+   ```
+
+4. **Access at**: http://localhost:8080
+
+## Production Deployment (Caddy)
+
+For production with Caddy reverse proxy at `/deuce` subpath:
+
+1. **Ensure base path is set** in `astro.config.mjs`:
+   ```js
+   base: '/deuce',
+   ```
+
+2. **Use edge network** in `docker-compose.yml` (default configuration)
+
+3. **Add Caddy configuration**:
+   ```
+   handle_path /deuce/* {
+       reverse_proxy deuce_website:80
+   }
+   ```
+
+4. **Deploy**:
+   ```bash
+   docker-compose up -d --build
+   ```
 
 ## Project Structure
 
@@ -53,36 +99,12 @@ astro-site/
 └── docker-compose.yml   # Docker Compose config
 ```
 
-## Customizing for New Projects
+## Configuration Files
 
-1. **Update site info**: Edit `astro.config.mjs` to change the site URL
-2. **Modify content**: Edit pages in `src/pages/`
-3. **Change styling**: Update `src/styles/global.css`
-4. **Update navigation**: Edit `src/components/Header.astro`
-5. **Add countries**: Edit the countries object in `src/pages/countries/[country].astro`
-
-## Adding New Pages
-
-Create a new `.astro` file in `src/pages/`:
-
-```astro
----
-import Layout from '../layouts/Layout.astro';
----
-
-<Layout title="My New Page">
-  <div class="page-header">
-    <div class="container">
-      <h1>My New Page</h1>
-    </div>
-  </div>
-  <section class="content">
-    <div class="container">
-      <p>Your content here...</p>
-    </div>
-  </section>
-</Layout>
-```
+| File | Purpose |
+|------|---------|
+| `astro.config.mjs` | Site URL, base path, build options |
+| `docker-compose.yml` | Docker service, networking, ports |
 
 ## Performance
 
@@ -94,4 +116,4 @@ import Layout from '../layouts/Layout.astro';
 
 ## License
 
-SCAN II Project - EU Justice Programme
+DEUCE Project - EU Justice Programme (2021-2027)
