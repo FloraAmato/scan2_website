@@ -1,194 +1,275 @@
 ---
 const base = import.meta.env.BASE_URL;
-// Map ISO codes to country slugs and tooltip data
+// Map ISO codes to country slugs and tooltip data for EOP and EEO
 const countryData: Record<string, {
   slug: string;
   name: string;
-  applicableLaw: string;
-  competentCourt: string;
-  legalFees: string;
+  applicableLawEOP: string;
+  applicableLawEEO: string;
+  competentCourtEOP: string;
+  competentCourtEEO: string;
+  legalFeesEOP: string;
+  legalFeesEEO: string;
 }> = {
   'AT': {
     slug: 'austria',
     name: 'Austria',
-    applicableLaw: '§548 of Code of Civil Procedure',
-    competentCourt: 'District Courts/in Vienna the District Court for Commercial Matters',
-    legalFees: 'Fees vary between €23 to €314'
+    applicableLawEOP: 'Regulation (EC) No 1896/2006 and § 252 Austrian Code of Civil Procedure (ZPO)',
+    applicableLawEEO: 'Regulation (EC) No 805/2004 and §§ 403-424 of the Austrian Enforcement Code (EO)',
+    competentCourtEOP: 'District Court (Bezirksgericht)',
+    competentCourtEEO: 'District Court (Bezirksgericht)',
+    legalFeesEOP: 'Court fee depending on amount in dispute, min. approx. EUR 23',
+    legalFeesEEO: 'No court fees for issuing EEO certificate; enforcement generates fees under Enforcement Code'
   },
   'BE': {
     slug: 'belgium',
     name: 'Belgium',
-    applicableLaw: 'None',
-    competentCourt: 'Justice of the Peace/Courts of first instance/Commercial courts',
-    legalFees: 'Fixed rate of €50 per claim'
+    applicableLawEOP: 'Regulation (EC) No 1896/2006 and Belgian Judicial Code',
+    applicableLawEEO: 'Regulation (EC) No 805/2004 and Belgian Judicial Code',
+    competentCourtEOP: 'Employment Tribunal / Enterprise Court / Justice of the Peace (< EUR 5,000) / Court of First Instance (>= EUR 5,000)',
+    competentCourtEEO: 'Same as EOP; certification by issuing court or notary',
+    legalFeesEOP: 'EUR 24 legal aid contribution + court fees EUR 50 or EUR 165',
+    legalFeesEEO: 'EUR 24 contribution + court fees EUR 50 or EUR 165 + possible additional costs'
   },
   'BG': {
     slug: 'bulgaria',
     name: 'Bulgaria',
-    applicableLaw: 'Chapter 57 CPC',
-    competentCourt: 'District Court',
-    legalFees: '4% of the value of the claim (min. BGN 50)'
+    applicableLawEOP: 'Bulgarian Code of Civil Procedure (CPC) and Bulgarian Judiciary Act',
+    applicableLawEEO: 'Bulgarian Code of Civil Procedure (CPC), Article 619',
+    competentCourtEOP: 'District Court (jurisdiction by debtor address/seat or place of performance)',
+    competentCourtEEO: 'First-instance court that heard the original lawsuit',
+    legalFeesEOP: '4% of claim value (min. BGN 50)',
+    legalFeesEEO: '4% of claim value (min. BGN 50)'
   },
   'HR': {
     slug: 'croatia',
     name: 'Croatia',
-    applicableLaw: 'Under €1,320 Artt. 457-467 CPA (civil procedure act)',
-    competentCourt: 'Municipal/Commercial court',
-    legalFees: '3.2% of the value of the claim'
+    applicableLawEOP: 'Civil Procedure Act (CPA); Enforcement Act (EA); Court Fees Act',
+    applicableLawEEO: 'Enforcement Act (EA), Articles 357, 362 and 363; Civil Procedure Act (CPA)',
+    competentCourtEOP: 'Municipal courts or commercial courts',
+    competentCourtEEO: 'Municipal courts',
+    legalFeesEOP: 'Based on claim value (Tariff No. 1); half fee for EOP application',
+    legalFeesEEO: 'Same Tariff No. 1 applies; half fee for enforcement motion'
   },
   'CY': {
     slug: 'cyprus',
     name: 'Cyprus',
-    applicableLaw: 'Procedural Regulation of 2008 on the European Small Claims Procedure',
-    competentCourt: 'District Courts',
-    legalFees: 'None'
+    applicableLawEOP: '2023 Rules of Civil Procedure (Articles 45.14-45.23)',
+    applicableLawEEO: '2023 Rules of Civil Procedure; general national rules on service and enforcement',
+    competentCourtEOP: 'District Courts (five districts: Nicosia, Limassol, Larnaca, Paphos, Famagusta)',
+    competentCourtEEO: 'District Courts',
+    legalFeesEOP: 'Costs cannot be determined in advance',
+    legalFeesEEO: 'Costs cannot be determined in advance'
   },
   'CZ': {
     slug: 'czechia',
     name: 'Czechia',
-    applicableLaw: 'None',
-    competentCourt: 'District Courts',
-    legalFees: 'Value < CZK 20,000: CZK 1,000 / Value > CZK 20,000: 5% of the value'
+    applicableLawEOP: 'Data not available in current roadmap',
+    applicableLawEEO: 'Data not available in current roadmap',
+    competentCourtEOP: 'Data not available in current roadmap',
+    competentCourtEEO: 'Data not available in current roadmap',
+    legalFeesEOP: 'Data not available in current roadmap',
+    legalFeesEEO: 'Data not available in current roadmap'
   },
   'EE': {
     slug: 'estonia',
     name: 'Estonia',
-    applicableLaw: '§405 of the Estonian Code of Civil Procedure',
-    competentCourt: 'County Courts',
-    legalFees: 'Fees vary between €75 to €400'
+    applicableLawEOP: 'Estonian Code of Civil Procedure (TsMS), §490¹ and Chapter 49',
+    applicableLawEEO: 'Estonian Code of Civil Procedure (TsMS), §§619 and 619¹; Code of Enforcement Procedure',
+    competentCourtEOP: 'District court that issues the EOP',
+    competentCourtEEO: 'District court that rendered the original judicial decision',
+    legalFeesEOP: 'Fee based on claim size (statutory table); EUR 20 for petitioner case costs',
+    legalFeesEEO: 'General enforcement cost rules apply'
   },
   'FI': {
     slug: 'finland',
     name: 'Finland',
-    applicableLaw: 'Law 753/2008',
-    competentCourt: 'Helsinki District Court',
-    legalFees: '€134 for an amount of €5,000'
+    applicableLawEOP: 'Data not available in current roadmap',
+    applicableLawEEO: 'Data not available in current roadmap',
+    competentCourtEOP: 'Data not available in current roadmap',
+    competentCourtEEO: 'Data not available in current roadmap',
+    legalFeesEOP: 'Data not available in current roadmap',
+    legalFeesEEO: 'Data not available in current roadmap'
   },
   'FR': {
     slug: 'france',
     name: 'France',
-    applicableLaw: 'None',
-    competentCourt: 'Local chamber of judicial court/Commercial court',
-    legalFees: 'None'
+    applicableLawEOP: 'Regulation (EC) No 1896/2006 and French Code of Civil Enforcement Procedures (CPCE)',
+    applicableLawEEO: 'Regulation (EC) No 805/2004 and French Code of Civil Enforcement Procedures (CPCE)',
+    competentCourtEOP: 'Judicial Court (tribunal judiciaire) or President of Commercial Court',
+    competentCourtEEO: 'Judge who issued the decision; notary for authentic instruments',
+    legalFeesEOP: 'No specific filing fee; enforcement costs ~EUR 48.85 for service from abroad',
+    legalFeesEEO: 'No specific filing fee; enforcement costs governed by national tariff'
   },
   'DE': {
     slug: 'germany',
     name: 'Germany',
-    applicableLaw: 'Artt. 1097-1109 CPC',
-    competentCourt: 'Municipal courts',
-    legalFees: '€114 for €500 to max €483 for €5,000'
+    applicableLawEOP: 'German Code of Civil Procedure (ZPO) + Regulation (EC) No 1896/2006',
+    applicableLawEEO: 'German Code of Civil Procedure (ZPO) + Regulation (EC) No 805/2004',
+    competentCourtEOP: 'District Court (Amtsgericht) / bailiff, depending on enforcement measure',
+    competentCourtEEO: 'District Court (Amtsgericht) as enforcement court',
+    legalFeesEOP: 'No fixed fee; enforcement fees depend on measure (e.g., EUR 22 for garnishment)',
+    legalFeesEEO: 'Same as EOP; variable enforcement fees, ultimately borne by debtor'
   },
   'GR': {
     slug: 'greece',
     name: 'Greece',
-    applicableLaw: 'None',
-    competentCourt: 'District Civil Courts',
-    legalFees: '1.14% of the value of the claim/no fees for claims < €200'
+    applicableLawEOP: 'EOP Regulation 1896/2006 + Greek Code of Civil Procedure',
+    applicableLawEEO: 'EEO Regulation 805/2004 + Greek Code of Civil Procedure',
+    competentCourtEOP: 'Court of First Instance (issuing judge); bailiff for enforcement',
+    competentCourtEEO: 'Court of First Instance (issuing authority); bailiff for enforcement',
+    legalFeesEOP: 'National court fees + bailiff fees (distance-based brackets)',
+    legalFeesEEO: 'National court fees + bailiff fees'
   },
   'HU': {
     slug: 'hungary',
     name: 'Hungary',
-    applicableLaw: 'Act CXXX of 2016 on the Code of Civil Procedure',
-    competentCourt: 'District Courts/in Budapest the Buda Central District Court',
-    legalFees: '6% of the value of the claim (min. HUF 15,000)'
+    applicableLawEOP: 'Judicial Enforcement Act; Act on Order for Payment Procedures; Code of Civil Procedure',
+    applicableLawEEO: 'Judicial Enforcement Act; Code of Civil Procedure; Act on Fees',
+    competentCourtEOP: 'District court of debtor domicile/seat (foreign EOP); issuing Hungarian notary (domestic)',
+    competentCourtEEO: 'District court of debtor domicile/seat (Central District Court of Buda in Budapest)',
+    legalFeesEOP: '1% of claim value (min. HUF 8,000 - max. HUF 150,000)',
+    legalFeesEEO: 'EEO certificate free; enforcement fee 1% of claim (min. HUF 5,000 - max. HUF 350,000)'
   },
   'IE': {
     slug: 'ireland',
     name: 'Ireland',
-    applicableLaw: 'Law of S.I. No. 533/2008',
-    competentCourt: 'District Courts',
-    legalFees: 'Fixed fee of €25 per claim'
+    applicableLawEOP: 'European Communities (European Order for Payment) Regulations 2008; Irish civil procedure rules',
+    applicableLawEEO: 'European Communities (European Enforcement Order) Regulations 2008; Irish civil procedure rules',
+    competentCourtEOP: 'High Court (Judgments Section)',
+    competentCourtEEO: 'High Court (Judgments Section)',
+    legalFeesEOP: 'High Court filing fee (approx. EUR 60-150)',
+    legalFeesEEO: 'High Court filing fee; EEO certificate free, enforcement fees vary'
   },
   'IT': {
     slug: 'italy',
     name: 'Italy',
-    applicableLaw: 'None',
-    competentCourt: 'Justice of the Peace',
-    legalFees: '€27 lump sum advance/€43 for a value up to €1,100'
+    applicableLawEOP: 'Italian Code of Civil Procedure (Arts. 137-151, 474-512, 615, 617, 623-624); Telematic Civil Process (PCT)',
+    applicableLawEEO: 'Italian Code of Civil Procedure; Telematic Civil Process (PCT)',
+    competentCourtEOP: 'Tribunale (ordinary civil court)',
+    competentCourtEEO: 'Tribunale (court of origin / enforcement)',
+    legalFeesEOP: 'Contributo unificato (approx. EUR 43-1,686 depending on claim value)',
+    legalFeesEEO: 'Contributo unificato (same scale as domestic enforcement)'
   },
   'LV': {
     slug: 'latvia',
     name: 'Latvia',
-    applicableLaw: 'None',
-    competentCourt: 'District Courts/City Courts',
-    legalFees: '< €2,134: 15% of claim / > €2,135: €320 plus 4%'
+    applicableLawEOP: 'Data not available in current roadmap',
+    applicableLawEEO: 'Data not available in current roadmap',
+    competentCourtEOP: 'Data not available in current roadmap',
+    competentCourtEEO: 'Data not available in current roadmap',
+    legalFeesEOP: 'Data not available in current roadmap',
+    legalFeesEEO: 'Data not available in current roadmap'
   },
   'LT': {
     slug: 'lithuania',
     name: 'Lithuania',
-    applicableLaw: 'Law on the Implementation of EU and International Legal Acts Regulating Civil Procedure',
-    competentCourt: 'District Courts',
-    legalFees: '3% of the value of the claim (min. €20)'
+    applicableLawEOP: 'Data not available in current roadmap',
+    applicableLawEEO: 'Data not available in current roadmap',
+    competentCourtEOP: 'Data not available in current roadmap',
+    competentCourtEEO: 'Data not available in current roadmap',
+    legalFeesEOP: 'Data not available in current roadmap',
+    legalFeesEEO: 'Data not available in current roadmap'
   },
   'LU': {
     slug: 'luxembourg',
     name: 'Luxembourg',
-    applicableLaw: 'None',
-    competentCourt: 'Justice of the Peace',
-    legalFees: 'None'
+    applicableLawEOP: 'New Code of Civil Procedure (NCPC); EOP Regulation',
+    applicableLawEEO: 'New Code of Civil Procedure (NCPC); EEO Regulation',
+    competentCourtEOP: 'President of District Court (> EUR 15,000); Justice of Peace (<= EUR 15,000); President of Labour Court',
+    competentCourtEEO: 'Court that issued the judgment',
+    legalFeesEOP: 'No specific court fee; enforcement costs set by Grand-Ducal regulation',
+    legalFeesEEO: 'No specific court fee; enforcement costs set by Grand-Ducal regulation'
   },
   'MT': {
     slug: 'malta',
     name: 'Malta',
-    applicableLaw: 'None',
-    competentCourt: 'Small Claims Tribunal',
-    legalFees: '€50 Registry fee + €7 service fee'
+    applicableLawEOP: 'Code of Organization and Civil Procedure (COCP, Chapter 12); EOP Regulation',
+    applicableLawEEO: 'Code of Organization and Civil Procedure (COCP, Chapter 12); EEO Regulation',
+    competentCourtEOP: 'First Hall of the Civil Court',
+    competentCourtEEO: 'First Hall of the Civil Court',
+    legalFeesEOP: 'EUR 90-250 (depending on claim value)',
+    legalFeesEEO: 'EUR 90-250 (depending on claim value)'
   },
   'NL': {
     slug: 'netherlands',
     name: 'Netherlands',
-    applicableLaw: 'Act of 29 May 2009',
-    competentCourt: 'Subdistrict Court',
-    legalFees: 'Fees vary from €86 to €487'
+    applicableLawEOP: 'EOP Regulation + EOP Implementation Act + Dutch Code of Civil Procedure (DCCP)',
+    applicableLawEEO: 'EEO Regulation + EEO Implementation Act + Dutch Code of Civil Procedure (DCCP)',
+    competentCourtEOP: 'District Court of The Hague (Subdistrict court for claims <= EUR 5,000)',
+    competentCourtEEO: 'Court that issued the judgment (Subdistrict/District Court/Court of Appeal)',
+    legalFeesEOP: 'Fixed court fee: approx. EUR 87-9,825 (Court Fees for Civil Procedure Act)',
+    legalFeesEEO: 'Fixed court fee: approx. EUR 87-9,825 (Court Fees for Civil Procedure Act)'
   },
   'PL': {
     slug: 'poland',
     name: 'Poland',
-    applicableLaw: 'None',
-    competentCourt: 'District Courts and Regional Court',
-    legalFees: '100 PLN (≈€21.35) for all applications'
+    applicableLawEOP: 'EOP Regulation 1896/2006 + Polish Code of Civil Procedure (KPC)',
+    applicableLawEEO: 'EEO Regulation 805/2004 + Polish Code of Civil Procedure (KPC)',
+    competentCourtEOP: 'District Court (<= 100,000 PLN); Regional Court (> 100,000 PLN)',
+    competentCourtEEO: 'Enforcement agent (komornik); certificate issued by court of origin',
+    legalFeesEOP: '5% of claim (min. 30 PLN)',
+    legalFeesEEO: '50 PLN (request for EEO certificate)'
   },
   'PT': {
     slug: 'portugal',
     name: 'Portugal',
-    applicableLaw: 'Law 41/2013',
-    competentCourt: 'District Courts',
-    legalFees: '€102 for an amount within €2,000'
+    applicableLawEOP: 'EOP Regulation + Portuguese CPC + Decree-Law 269/98',
+    applicableLawEEO: 'EEO Regulation + Portuguese CPC + Law 32/2014 (PEPEX optional)',
+    competentCourtEOP: 'Court of First Instance (debtor domicile/seat)',
+    competentCourtEEO: 'Court at debtor domicile/seat (+ enforcement agent; PEPEX optional)',
+    legalFeesEOP: 'Court fees under Regulamento das Custas Processuais (reduced if electronic)',
+    legalFeesEEO: 'Court fees under Regulamento das Custas Processuais (reduced if electronic)'
   },
   'RO': {
     slug: 'romania',
     name: 'Romania',
-    applicableLaw: 'None',
-    competentCourt: 'District Courts',
-    legalFees: '< €2,000: 50 RON (€10.16) / > €2,000: 100 RON (€20.34)'
+    applicableLawEOP: 'EOP Regulation + Romanian CPC',
+    applicableLawEEO: 'EEO Regulation + Romanian CPC + O.U.G. 119/2006',
+    competentCourtEOP: 'District Court (<= RON 200,000) / Tribunal (> RON 200,000)',
+    competentCourtEEO: 'Court of First Instance (certification); bailiff for enforcement',
+    legalFeesEOP: 'Court stamp fee (sliding scale per O.U.G. 80/2013)',
+    legalFeesEEO: 'No specific fee (general stamp fees only)'
   },
   'SK': {
     slug: 'slovakia',
     name: 'Slovakia',
-    applicableLaw: 'None',
-    competentCourt: 'District Courts',
-    legalFees: '6% of the value of the claim (50% lower if filed electronically, max €70)'
+    applicableLawEOP: 'Regulation 1896/2006 + Enforcement Code (Act No. 233/1995) + Civil Procedure Code',
+    applicableLawEEO: 'Regulation 805/2004 + Enforcement Code (Act No. 233/1995) + Civil Procedure Code',
+    competentCourtEOP: 'District Court of Banska Bystrica (nationwide jurisdiction)',
+    competentCourtEEO: 'District Court of Banska Bystrica (nationwide jurisdiction)',
+    legalFeesEOP: 'EUR 25 court fee (motion to initiate enforcement)',
+    legalFeesEEO: 'EUR 25 court fee (motion to initiate enforcement)'
   },
   'SI': {
     slug: 'slovenia',
     name: 'Slovenia',
-    applicableLaw: 'Artt. 442-458 Slovenian Civil Procedural Act',
-    competentCourt: 'Local Courts',
-    legalFees: '€54-€255 depending on claim value'
+    applicableLawEOP: 'Regulation 1896/2006 + ZPP (Civil Procedure Act) + ZIZ (Enforcement Act)',
+    applicableLawEEO: 'Regulation 805/2004 + ZPP + ZIZ',
+    competentCourtEOP: 'Local Court (<= EUR 20,000) / District Court (> EUR 20,000; all commercial cases)',
+    competentCourtEEO: 'Court that decided at first instance / Notary; District Court for correction/revocation',
+    legalFeesEOP: 'EUR 55 court fee (-20% if filed electronically)',
+    legalFeesEEO: 'EUR 55 court fee (-20% if filed electronically)'
   },
   'ES': {
     slug: 'spain',
     name: 'Spain',
-    applicableLaw: 'Law 1/2000, implemented by law 4/2011 and law 37/2011',
-    competentCourt: 'Courts of first instance/Commercial court',
-    legalFees: 'None'
+    applicableLawEOP: 'Regulation (EC) No 1896/2006 and Spanish Law on Civil Procedure (LEC)',
+    applicableLawEEO: 'Regulation (EC) No 805/2004 and Spanish Law on Civil Procedure (LEC)',
+    competentCourtEOP: 'Court of First Instance of debtor domicile',
+    competentCourtEEO: 'Court of First Instance of debtor domicile or place of enforcement',
+    legalFeesEOP: 'No court fees for enforcement; lawyer and procurador required if claim > EUR 2,000',
+    legalFeesEEO: 'No court fees for enforcement; lawyer and procurador required if claim > EUR 2,000'
   },
   'SE': {
     slug: 'sweden',
     name: 'Sweden',
-    applicableLaw: 'Act (2008:1038) on European Small Claims Procedure',
-    competentCourt: 'District Courts',
-    legalFees: 'Value < €2,200: €84 / Value > €2,200: €262'
+    applicableLawEOP: 'Regulation (EC) No 1896/2006 and Swedish enforcement law',
+    applicableLawEEO: 'Regulation (EC) No 805/2004 and Swedish enforcement law',
+    competentCourtEOP: 'Swedish Enforcement Authority',
+    competentCourtEEO: 'Swedish Enforcement Authority',
+    legalFeesEOP: 'SEK 600 basic enforcement fee (per case and year)',
+    legalFeesEEO: 'SEK 600 basic enforcement fee (per case and year)'
   },
 };
 
@@ -240,17 +321,35 @@ const euCountries = Object.keys(countryData);
                 tooltip.innerHTML = `
                   <div class="tooltip-header">${data.name}</div>
                   <div class="tooltip-content">
-                    <div class="tooltip-row">
-                      <span class="tooltip-label">Applicable Law:</span>
-                      <span class="tooltip-value">${data.applicableLaw}</span>
+                    <div class="tooltip-section">
+                      <div class="tooltip-section-title">EOP (European Order for Payment)</div>
+                      <div class="tooltip-row">
+                        <span class="tooltip-label">Applicable Law:</span>
+                        <span class="tooltip-value">${data.applicableLawEOP}</span>
+                      </div>
+                      <div class="tooltip-row">
+                        <span class="tooltip-label">Competent Court (1st Instance):</span>
+                        <span class="tooltip-value">${data.competentCourtEOP}</span>
+                      </div>
+                      <div class="tooltip-row">
+                        <span class="tooltip-label">Legal Fees:</span>
+                        <span class="tooltip-value">${data.legalFeesEOP}</span>
+                      </div>
                     </div>
-                    <div class="tooltip-row">
-                      <span class="tooltip-label">Competent Court (1st Instance):</span>
-                      <span class="tooltip-value">${data.competentCourt}</span>
-                    </div>
-                    <div class="tooltip-row">
-                      <span class="tooltip-label">Legal Fees:</span>
-                      <span class="tooltip-value">${data.legalFees}</span>
+                    <div class="tooltip-section">
+                      <div class="tooltip-section-title">EEO (European Enforcement Order)</div>
+                      <div class="tooltip-row">
+                        <span class="tooltip-label">Applicable Law:</span>
+                        <span class="tooltip-value">${data.applicableLawEEO}</span>
+                      </div>
+                      <div class="tooltip-row">
+                        <span class="tooltip-label">Competent Court (1st Instance):</span>
+                        <span class="tooltip-value">${data.competentCourtEEO}</span>
+                      </div>
+                      <div class="tooltip-row">
+                        <span class="tooltip-label">Legal Fees:</span>
+                        <span class="tooltip-value">${data.legalFeesEEO}</span>
+                      </div>
                     </div>
                   </div>
                   <div class="tooltip-footer">Click for full details</div>
@@ -349,9 +448,9 @@ const euCountries = Object.keys(countryData);
     padding: 0;
     z-index: 1000;
     pointer-events: none;
-    min-width: 280px;
-    max-width: 320px;
-    font-size: 0.9rem;
+    min-width: 320px;
+    max-width: 420px;
+    font-size: 0.85rem;
     text-align: left;
   }
 
@@ -375,10 +474,31 @@ const euCountries = Object.keys(countryData);
 
   .tooltip-content {
     padding: 0.75rem 1rem;
+    max-height: 400px;
+    overflow-y: auto;
+  }
+
+  .tooltip-section {
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid #e2e8f0;
+  }
+
+  .tooltip-section:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+
+  .tooltip-section-title {
+    font-weight: 600;
+    color: #2b6cb0;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
   }
 
   .tooltip-row {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.4rem;
   }
 
   .tooltip-row:last-child {
@@ -389,13 +509,15 @@ const euCountries = Object.keys(countryData);
     display: block;
     font-weight: 600;
     color: #4a5568;
-    font-size: 0.8rem;
-    margin-bottom: 0.15rem;
+    font-size: 0.75rem;
+    margin-bottom: 0.1rem;
   }
 
   .tooltip-value {
     display: block;
     color: #2d3748;
+    font-size: 0.8rem;
+    line-height: 1.3;
   }
 
   .tooltip-footer {
