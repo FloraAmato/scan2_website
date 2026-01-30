@@ -1,50 +1,20 @@
+# DEUCE Website Docker Compose
+#
+# For LOCAL testing, uncomment ports and comment out networks sections
+# For PRODUCTION (Caddy), use edge network without ports
+
 services:
-  db:
-    image: mariadb:10.6
-    environment:
-      MYSQL_DATABASE: ${MYSQL_DATABASE}
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-    volumes:
-      - db_data:/var/lib/mysql
-      - ./db:/docker-entrypoint-initdb.d:ro
-    command: >
-      --character-set-server=utf8mb4
-      --collation-server=utf8mb4_unicode_ci
-    healthcheck:
-      test: ["CMD", "mariadb-admin", "ping", "-p${MYSQL_ROOT_PASSWORD}"]
-      interval: 5s
-      timeout: 3s
-      retries: 30
+  deuce_website:
+    build: .
+    restart: unless-stopped
+    # LOCAL: Uncomment to expose on port 8080
+    # ports:
+    #   - "8080:80"
+    # PRODUCTION: Comment out for local testing
+    networks:
+      - edge
 
-  wp:
-    image: wordpress:php8.2-apache
-    depends_on:
-      db:
-        condition: service_healthy
-    ports:
-      - "${WORDPRESS_PORT:-8080}:80"
-    volumes:
-      - ./site:/var/www/html
-    environment:
-      WORDPRESS_DB_HOST: db
-      WORDPRESS_DB_NAME: ${MYSQL_DATABASE}
-      WORDPRESS_DB_USER: ${MYSQL_USER}
-      WORDPRESS_DB_PASSWORD: ${MYSQL_PASSWORD}
-
-  wpcli:
-    image: wordpress:cli
-    depends_on:
-      - wp
-    volumes:
-      - ./site:/var/www/html
-    working_dir: /var/www/html
-    environment:
-      WORDPRESS_DB_HOST: db
-      WORDPRESS_DB_NAME: ${MYSQL_DATABASE}
-      WORDPRESS_DB_USER: ${MYSQL_USER}
-      WORDPRESS_DB_PASSWORD: ${MYSQL_PASSWORD}
-
-volumes:
-  db_data:
+# PRODUCTION: Comment out for local testing
+networks:
+  edge:
+    external: true

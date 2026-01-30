@@ -1,25 +1,28 @@
-# Environment files with sensitive data
-.env
-
-# Astro build artifacts (from local testing)
-.astro/
-dist/
+# Dependencies
 node_modules/
-package-lock.json
+
+# Build output
+dist/
+.astro/
+
+# Generated types
 src/env.d.ts
 
-# Docker volumes
-db_data/
+# Environment
+.env
+.env.local
+.env.production
 
-# WordPress uploads (optional - uncomment if you don't want to track uploads)
-# site/wp-content/uploads/
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
 
-# OS generated files
+# OS
 .DS_Store
 Thumbs.db
 
-# IDE files
-.idea/
-.vscode/
-*.swp
-*.swo
+# Logs
+*.log
+npm-debug.log*

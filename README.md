@@ -1,166 +1,119 @@
-# SCAN II Website
+# DEUCE Website (Astro)
 
-This repository contains two versions of the SCAN II website:
+A fast, modern static website for the DEUCE project, built with Astro.
 
-1. **`astro-site/`** - Modern static site (recommended)
-2. **`site/`** - Original WordPress installation
+DEUCE focuses on improving the enforcement of judicial decisions in cross-border pecuniary claims through European Enforcement Orders (EEO) and European Orders for Payment (EOP).
 
----
+## Quick Start
 
-## Option 1: Astro Static Site (Recommended)
-
-A fast, lightweight static website with no database required.
-
-### Prerequisites
-
-- Node.js 18+ (for development)
-- Docker (for production deployment)
-
-### Development
+### Development (npm)
 
 ```bash
-cd astro-site
-
 # Install dependencies
 npm install
 
-# Start development server
+# Start dev server (http://localhost:4321)
 npm run dev
 ```
 
-Open http://localhost:4321 in your browser.
-
-### Production Deployment with Docker
+### Production Build
 
 ```bash
-cd astro-site
-
-# Build and start the container
-docker-compose up -d
-```
-
-Open http://localhost:8080 in your browser.
-
-### Production Deployment without Docker
-
-```bash
-cd astro-site
-
 # Build static files
 npm run build
 
-# The 'dist' folder contains your static site
-# Upload it to any web server or static hosting service
+# Preview production build
+npm run preview
 ```
 
-### Hosting Options (Free)
+## Local Testing with Docker
 
-- **Netlify**: Drag and drop the `dist` folder
-- **Vercel**: Connect your Git repository
-- **Cloudflare Pages**: Connect your Git repository
-- **GitHub Pages**: Push to a `gh-pages` branch
+For local testing without Caddy/edge network:
 
----
+1. **Comment out the base path** in `astro.config.mjs`:
+   ```js
+   // base: '/deuce',
+   ```
 
-## Option 2: WordPress (Legacy)
+2. **Update docker-compose.yml** for local mode:
+   ```yaml
+   services:
+     deuce_website:
+       build: .
+       restart: unless-stopped
+       ports:
+         - "8080:80"
+       # networks:
+       #   - edge
 
-The original WordPress installation with database.
+   # networks:
+   #   edge:
+   #     external: true
+   ```
 
-### Prerequisites
+3. **Build and run**:
+   ```bash
+   docker-compose up -d --build
+   ```
 
-- Docker and Docker Compose
+4. **Access at**: http://localhost:8080
 
-### Running WordPress
+## Production Deployment (Caddy)
 
-```bash
-# Copy environment template
-cp .env.example .env
+For production with Caddy reverse proxy at `/deuce` subpath:
 
-# Edit .env with your credentials
-nano .env
+1. **Ensure base path is set** in `astro.config.mjs`:
+   ```js
+   base: '/deuce',
+   ```
 
-# Start WordPress and database
-docker-compose up -d
-```
+2. **Use edge network** in `docker-compose.yml` (default configuration)
 
-Open http://localhost:8080 in your browser.
+3. **Add Caddy configuration**:
+   ```
+   handle_path /deuce/* {
+       reverse_proxy deuce_website:80
+   }
+   ```
 
-### Changing WordPress User Password
-
-After starting the containers:
-
-```bash
-./scripts/change-wp-password.sh bondo2488_zeoxh4x1 "YourNewPassword"
-```
-
----
+4. **Deploy**:
+   ```bash
+   docker-compose up -d --build
+   ```
 
 ## Project Structure
 
 ```
-scan2_website/
-├── astro-site/          # Static site (recommended)
-│   ├── src/
-│   │   ├── pages/       # Website pages
-│   │   ├── components/  # Reusable components
-│   │   ├── layouts/     # Page layouts
-│   │   └── styles/      # CSS styles
-│   ├── public/          # Static assets
-│   ├── Dockerfile
-│   └── docker-compose.yml
-│
-├── site/                # WordPress files (legacy)
-├── db/                  # WordPress database dump
-├── scripts/             # Utility scripts
-├── docker-compose.yml   # WordPress Docker config
-├── .env.example         # Environment template
-└── .env                 # Your credentials (not in git)
+astro-site/
+├── src/
+│   ├── pages/           # Page routes (automatic routing)
+│   │   ├── index.astro  # Homepage
+│   │   ├── about.astro  # About page
+│   │   └── countries/   # Country pages (dynamic)
+│   ├── layouts/         # Page layouts
+│   ├── components/      # Reusable components
+│   └── styles/          # Global CSS
+├── public/              # Static assets (images, favicon)
+├── astro.config.mjs     # Astro configuration
+├── Dockerfile           # Docker build
+└── docker-compose.yml   # Docker Compose config
 ```
 
----
+## Configuration Files
 
-## Customizing for Similar Projects
+| File | Purpose |
+|------|---------|
+| `astro.config.mjs` | Site URL, base path, build options |
+| `docker-compose.yml` | Docker service, networking, ports |
 
-The Astro site is designed to be easily duplicated:
+## Performance
 
-1. **Copy the project**
-   ```bash
-   cp -r astro-site my-new-project
-   cd my-new-project
-   ```
-
-2. **Update site configuration**
-   Edit `astro.config.mjs`:
-   ```js
-   export default defineConfig({
-     site: 'https://your-new-domain.com',
-   });
-   ```
-
-3. **Modify content**
-   - Edit pages in `src/pages/`
-   - Update navigation in `src/components/Header.astro`
-   - Change footer in `src/components/Footer.astro`
-   - Modify styles in `src/styles/global.css`
-
-4. **Update country data** (if applicable)
-   Edit the countries object in `src/pages/countries/[country].astro`
-
----
-
-## Comparison
-
-| Feature | Astro | WordPress |
-|---------|-------|-----------|
-| Load time | ~300ms | ~2-4s |
-| Database | None | MariaDB |
-| Hosting cost | Free | $5-20/month |
-| Security patches | None | Regular |
-| Customization | Edit code | Admin UI |
-| Deployment | Static files | Docker + DB |
-
----
+- Zero JavaScript by default
+- Pre-rendered static HTML
+- Optimized CSS
+- Fast nginx serving
+- Gzip compression enabled
 
 ## License
 
-SCAN II Project - Co-funded by the European Union's Justice Programme
+DEUCE Project - EU Justice Programme (2021-2027)
