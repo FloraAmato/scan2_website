@@ -231,6 +231,46 @@ const countryData: Record<string, {
     legalFeesEOP: 'SEK 600 basic enforcement fee (per case and year)',
     legalFeesEEO: 'SEK 600 basic enforcement fee (per case and year)'
   },
+  'FI': {
+    slug: 'finland',
+    name: 'Finland',
+    applicableLawEOP: 'EOP Regulation + Finnish Enforcement Code + Code of Judicial Procedure',
+    applicableLawEEO: 'EEO Regulation + Finnish Enforcement Code + Code of Judicial Procedure',
+    competentCourtEOP: 'District Court of Helsinki (refusal/stay proceedings)',
+    competentCourtEEO: 'District Court of Helsinki (refusal/stay proceedings)',
+    legalFeesEOP: 'EUR 100 court fee (EOP application)',
+    legalFeesEEO: 'EUR 37 court fee (EEO certificate)'
+  },
+  'CZ': {
+    slug: 'czechia',
+    name: 'Czechia',
+    applicableLawEOP: 'EOP Regulation + Czech Civil Procedure Act',
+    applicableLawEEO: 'EEO Regulation + Czech Civil Procedure Act',
+    competentCourtEOP: 'District court (judicial enforcement)',
+    competentCourtEEO: 'District court (certificate issuance)',
+    legalFeesEOP: 'Value-based court fee (CZK)',
+    legalFeesEEO: 'No fee (certificate issued free)'
+  },
+  'LV': {
+    slug: 'latvia',
+    name: 'Latvia',
+    applicableLawEOP: 'EOP Regulation + Latvian Civil Procedure Code + Law on Bailiffs',
+    applicableLawEEO: 'EEO Regulation + Latvian Civil Procedure Code + Law on Bailiffs',
+    competentCourtEOP: 'District (city) court at place of enforcement',
+    competentCourtEEO: 'District (city) court at place of enforcement',
+    legalFeesEOP: 'State fee + sworn bailiff fees',
+    legalFeesEEO: 'State fee + sworn bailiff fees'
+  },
+  'LT': {
+    slug: 'lithuania',
+    name: 'Lithuania',
+    applicableLawEOP: 'EOP Regulation + Lithuanian Code of Civil Procedure + Enforcement Instructions',
+    applicableLawEEO: 'EEO Regulation + Lithuanian Code of Civil Procedure + Enforcement Instructions',
+    competentCourtEOP: 'Judicial officers (bailiffs); courts for refusal/stay',
+    competentCourtEEO: 'Judicial officers (bailiffs); courts for refusal/stay',
+    legalFeesEOP: 'Administrative fees + judicial officer remuneration',
+    legalFeesEEO: 'Administrative fees + judicial officer remuneration'
+  },
 };
 
 const euCountries = Object.keys(countryData);
