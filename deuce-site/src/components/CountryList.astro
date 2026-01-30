@@ -1,0 +1,42 @@
+---
+// EU country data with flag emojis
+const countries = [
+  { slug: 'austria', name: 'Austria', flag: '🇦🇹' },
+  { slug: 'belgium', name: 'Belgium', flag: '🇧🇪' },
+  { slug: 'bulgaria', name: 'Bulgaria', flag: '🇧🇬' },
+  { slug: 'croatia', name: 'Croatia', flag: '🇭🇷' },
+  { slug: 'cyprus', name: 'Cyprus', flag: '🇨🇾' },
+  { slug: 'czechia', name: 'Czechia', flag: '🇨🇿' },
+  { slug: 'estonia', name: 'Estonia', flag: '🇪🇪' },
+  { slug: 'finland', name: 'Finland', flag: '🇫🇮' },
+  { slug: 'france', name: 'France', flag: '🇫🇷' },
+  { slug: 'germany', name: 'Germany', flag: '🇩🇪' },
+  { slug: 'greece', name: 'Greece', flag: '🇬🇷' },
+  { slug: 'hungary', name: 'Hungary', flag: '🇭🇺' },
+  { slug: 'ireland', name: 'Ireland', flag: '🇮🇪' },
+  { slug: 'italy', name: 'Italy', flag: '🇮🇹' },
+  { slug: 'latvia', name: 'Latvia', flag: '🇱🇻' },
+  { slug: 'lithuania', name: 'Lithuania', flag: '🇱🇹' },
+  { slug: 'luxembourg', name: 'Luxembourg', flag: '🇱🇺' },
+  { slug: 'malta', name: 'Malta', flag: '🇲🇹' },
+  { slug: 'netherlands', name: 'Netherlands', flag: '🇳🇱' },
+  { slug: 'poland', name: 'Poland', flag: '🇵🇱' },
+  { slug: 'portugal', name: 'Portugal', flag: '🇵🇹' },
+  { slug: 'romania', name: 'Romania', flag: '🇷🇴' },
+  { slug: 'slovakia', name: 'Slovakia', flag: '🇸🇰' },
+  { slug: 'slovenia', name: 'Slovenia', flag: '🇸🇮' },
+  { slug: 'spain', name: 'Spain', flag: '🇪🇸' },
+  { slug: 'sweden', name: 'Sweden', flag: '🇸🇪' },
+];
+
+const base = import.meta.env.BASE_URL;
+---
+
+<div class="country-grid">
+  {countries.map(country => (
+    <a href={`${base}countries/${country.slug}/`} class="country-link">
+      <span class="country-flag">{country.flag}</span>
+      <span>{country.name}</span>
+    </a>
+  ))}
+</div>

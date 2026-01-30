@@ -1,0 +1,113 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const partners = [
+  {
+    name: 'University of Naples Federico II (UNINA)',
+    country: 'Italy',
+    role: 'Coordinator',
+    url: 'https://www.unina.it',
+  },
+  {
+    name: 'Vrije Universiteit Brussel (VUB)',
+    country: 'Belgium',
+    role: 'Partner',
+    url: 'https://www.vub.be',
+  },
+  {
+    name: 'Univerza v Ljubljani (UL)',
+    country: 'Slovenia',
+    role: 'Partner',
+    url: 'https://www.uni-lj.si',
+  },
+  {
+    name: 'Vilniaus Universitetas (VU)',
+    country: 'Lithuania',
+    role: 'Partner',
+    url: 'https://www.vu.lt',
+  },
+  {
+    name: 'Sveučilište u Zagrebu – Pravni Fakultet (UniZG)',
+    country: 'Croatia',
+    role: 'Partner',
+    url: 'https://www.pravo.unizg.hr',
+  },
+  {
+    name: 'University of Malta (UM)',
+    country: 'Malta',
+    role: 'Partner',
+    url: 'https://www.um.edu.mt',
+  },
+  {
+    name: 'University of Cyprus (UCY)',
+    country: 'Cyprus',
+    role: 'Partner',
+    url: 'https://www.ucy.ac.cy',
+  },
+  {
+    name: 'Centro di Studi Giuridici Latinoamericani (CSGLA-UniRoma Tor Vergata)',
+    country: 'Italy',
+    role: 'Partner',
+    url: 'https://web.uniroma2.it',
+  },
+  {
+    name: 'European University Institute (EUI)',
+    country: 'Italy',
+    role: 'Partner',
+    url: 'https://www.eui.eu',
+  },
+  {
+    name: 'Fondazione Bruno Kessler (FBK)',
+    country: 'Italy',
+    role: 'Partner',
+    url: 'https://www.fbk.eu',
+  }
+];
+
+const base = import.meta.env.BASE_URL;
+---
+
+<Layout title="Project Partners">
+  <div class="page-header">
+    <div class="container">
+      <h1>Project Partners</h1>
+      <p class="breadcrumb"><a href={base}>Home</a> / Partners</p>
+    </div>
+  </div>
+
+  <section class="content">
+    <div class="container">
+      <p>
+        The DEUCE project brings together a consortium of ten leading European universities and research
+        institutions with expertise in EU civil procedure, enforcement law, private international law,
+        and information technology. The consortium includes partners from Italy, Belgium, Slovenia,
+        Lithuania, Croatia, Malta, and Cyprus.
+      </p>
+
+      <div class="card-grid" style="margin-top: 2rem;">
+        {partners.map(partner => (
+          <a href={partner.url} class="card partner-card" target="_blank" rel="noopener noreferrer">
+            <h3>{partner.name}</h3>
+            <p><strong>{partner.country}</strong> {partner.role === 'Coordinator' ? '– Coordinator' : ''}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .partner-card {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .partner-card h3 {
+    color: var(--color-primary);
+    transition: color 0.2s;
+  }
+
+  .partner-card:hover h3 {
+    color: var(--color-accent);
+  }
+</style>

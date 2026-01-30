@@ -1,0 +1,198 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import countriesData from '../../data/countries.json';
+
+// Country metadata
+const countryMeta: Record<string, { flag: string }> = {
+  'austria': { flag: '🇦🇹' },
+  'belgium': { flag: '🇧🇪' },
+  'bulgaria': { flag: '🇧🇬' },
+  'croatia': { flag: '🇭🇷' },
+  'cyprus': { flag: '🇨🇾' },
+  'czechia': { flag: '🇨🇿' },
+  'estonia': { flag: '🇪🇪' },
+  'finland': { flag: '🇫🇮' },
+  'france': { flag: '🇫🇷' },
+  'germany': { flag: '🇩🇪' },
+  'greece': { flag: '🇬🇷' },
+  'hungary': { flag: '🇭🇺' },
+  'ireland': { flag: '🇮🇪' },
+  'italy': { flag: '🇮🇹' },
+  'latvia': { flag: '🇱🇻' },
+  'lithuania': { flag: '🇱🇹' },
+  'luxembourg': { flag: '🇱🇺' },
+  'malta': { flag: '🇲🇹' },
+  'netherlands': { flag: '🇳🇱' },
+  'poland': { flag: '🇵🇱' },
+  'portugal': { flag: '🇵🇹' },
+  'romania': { flag: '🇷🇴' },
+  'slovakia': { flag: '🇸🇰' },
+  'slovenia': { flag: '🇸🇮' },
+  'spain': { flag: '🇪🇸' },
+  'sweden': { flag: '🇸🇪' },
+};
+
+const countrySlugs = Object.keys(countryMeta);
+
+export function getStaticPaths() {
+  const slugs = [
+    'austria', 'belgium', 'bulgaria', 'croatia', 'cyprus', 'czechia',
+    'estonia', 'finland', 'france', 'germany', 'greece',
+    'hungary', 'ireland', 'italy', 'latvia', 'lithuania', 'luxembourg',
+    'malta', 'netherlands', 'poland', 'portugal', 'romania', 'slovakia',
+    'slovenia', 'spain', 'sweden'
+  ];
+  return slugs.map((slug) => ({
+    params: { country: slug },
+  }));
+}
+
+const { country } = Astro.params;
+const meta = countryMeta[country as string] || { flag: '🇪🇺' };
+const data = (countriesData as Record<string, { name: string; content: string }>)[country as string];
+
+const countryName = data?.name || country?.charAt(0).toUpperCase() + country?.slice(1) || 'Unknown';
+const rawContent = data?.content || '';
+
+// Process the HTML content to clean it up
+function processContent(html: string): string {
+  // Fix common HTML issues
+  let processed = html
+    // Convert WordPress footnote links
+    .replace(/\[(\d+)\]/g, '<sup>[$1]</sup>')
+    // Ensure proper spacing
+    .replace(/<\/li>\s*<li>/g, '</li><li>')
+    // Clean up empty paragraphs
+    .replace(/<p>\s*<\/p>/g, '')
+    // Fix quote marks
+    .replace(/&amp;/g, '&');
+
+  return processed;
+}
+
+const content = processContent(rawContent);
+const hasContent = content.length > 0;
+const base = import.meta.env.BASE_URL;
+---
+
+<Layout title={`${countryName} - EEO/EOP Enforcement`}>
+  <div class="page-header">
+    <div class="container">
+      <h1><span class="flag">{meta.flag}</span> {countryName}</h1>
+      <p class="breadcrumb">
+        <a href={base}>Home</a> / <a href={`${base}#countries`}>Countries</a> / {countryName}
+      </p>
+    </div>
+  </div>
+
+  <section class="content">
+    <div class="container">
+      {hasContent ? (
+        <div class="country-content" set:html={content} />
+      ) : (
+        <div class="no-content">
+          <p>Information about EEO/EOP enforcement procedures in {countryName} is not yet available.</p>
+          <p>Please check back later or visit the DEUCE Platform for more information.</p>
+        </div>
+      )}
+
+      <div class="card platform-cta">
+        <h3>Access the DEUCE Platform</h3>
+        <p>For the most up-to-date and detailed information about EEO/EOP enforcement procedures in {countryName}, visit the DEUCE Platform.</p>
+        <a href="https://deuce.scan2project.org/home" class="btn" target="_blank" rel="noopener noreferrer">
+          Go to DEUCE Platform
+        </a>
+      </div>
+
+      <div class="back-link">
+        <a href={base}>&larr; Back to Home</a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .flag {
+    font-size: 1.2em;
+    margin-right: 0.5rem;
+  }
+
+  .country-content {
+    line-height: 1.8;
+  }
+
+  .country-content :global(strong),
+  .country-content :global(b) {
+    color: var(--color-primary);
+  }
+
+  .country-content :global(em strong),
+  .country-content :global(strong em) {
+    display: block;
+    font-size: 1.3rem;
+    margin: 2rem 0 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--color-accent);
+  }
+
+  .country-content :global(ol) {
+    list-style: none;
+    padding-left: 0;
+    counter-reset: section;
+  }
+
+  .country-content :global(ol > li) {
+    margin: 1.5rem 0;
+  }
+
+  .country-content :global(ol > li > strong) {
+    font-size: 1.1rem;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .country-content :global(ul) {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+  }
+
+  .country-content :global(ul li) {
+    margin: 0.5rem 0;
+  }
+
+  .country-content :global(a) {
+    word-break: break-word;
+  }
+
+  .country-content :global(sup) {
+    font-size: 0.75em;
+    color: var(--color-accent);
+  }
+
+  .no-content {
+    background: var(--color-background-alt);
+    padding: 2rem;
+    border-radius: 8px;
+    text-align: center;
+  }
+
+  .platform-cta {
+    background: var(--color-background-alt);
+    margin: 3rem 0;
+    text-align: center;
+  }
+
+  .platform-cta h3 {
+    margin-bottom: 1rem;
+  }
+
+  .platform-cta p {
+    margin-bottom: 1.5rem;
+  }
+
+  .back-link {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-border);
+  }
+</style>

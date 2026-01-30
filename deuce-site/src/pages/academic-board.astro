@@ -1,0 +1,55 @@
+---
+import Layout from '../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL;
+---
+
+<Layout title="Academic Board">
+  <div class="page-header">
+    <div class="container">
+      <h1>Academic Board</h1>
+      <p class="breadcrumb"><a href={base}>Home</a> / <a href={`${base}network/`}>Network</a> / Academic Board</p>
+    </div>
+  </div>
+
+  <section class="content">
+    <div class="container">
+      <p>
+        The DEUCE Academic Board consists of leading scholars and researchers specializing in EU civil
+        procedure, enforcement law, and cross-border judicial cooperation from across Europe.
+      </p>
+
+      <h2>Board Members</h2>
+      <p>
+        Our academic board brings together experts from the project consortium universities and affiliated
+        institutions across Europe.
+      </p>
+
+      <div class="card-grid">
+        <div class="card">
+          <h3>University of Naples Federico II</h3>
+          <p>Experts in EU civil procedure and enforcement law (Coordinator)</p>
+        </div>
+        <div class="card">
+          <h3>VUB Brussels</h3>
+          <p>Specialists in European private international law</p>
+        </div>
+        <div class="card">
+          <h3>University of Ljubljana</h3>
+          <p>Experts in enforcement law and cross-border litigation</p>
+        </div>
+        <div class="card">
+          <h3>European University Institute</h3>
+          <p>Researchers in EU law and judicial cooperation</p>
+        </div>
+      </div>
+
+      <h2>Role of the Academic Board</h2>
+      <ul>
+        <li>Provide scientific guidance for project research activities</li>
+        <li>Review and validate research outputs on EEO and EOP enforcement</li>
+        <li>Contribute expertise on national enforcement systems</li>
+        <li>Participate in project events and dissemination activities</li>
+      </ul>
+    </div>
+  </section>
+</Layout>

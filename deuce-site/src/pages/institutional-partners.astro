@@ -1,0 +1,60 @@
+---
+import Layout from '../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL;
+---
+
+<Layout title="Institutional Partners">
+  <div class="page-header">
+    <div class="container">
+      <h1>Institutional Partners</h1>
+      <p class="breadcrumb"><a href={base}>Home</a> / <a href={`${base}network/`}>Network</a> / Institutional Partners</p>
+    </div>
+  </div>
+
+  <section class="content">
+    <div class="container">
+      <p>
+        The DEUCE project collaborates with national enforcement authorities, judicial bodies, and
+        professional organizations across Europe to ensure our research and platform reflect real-world
+        practice in EEO and EOP enforcement.
+      </p>
+
+      <h2>Types of Institutional Partners</h2>
+
+      <div class="card-grid">
+        <div class="card">
+          <h3>National Enforcement Authorities</h3>
+          <p>Bailiffs, enforcement officers, and judicial enforcement bodies across EU Member States.</p>
+        </div>
+        <div class="card">
+          <h3>Judicial Bodies</h3>
+          <p>Courts and judicial institutions involved in cross-border enforcement of EEO and EOP.</p>
+        </div>
+        <div class="card">
+          <h3>Professional Organizations</h3>
+          <p>Bar associations, chambers of enforcement officers, and legal professional bodies.</p>
+        </div>
+        <div class="card">
+          <h3>EU Institutions</h3>
+          <p>European Commission and other EU bodies working on civil justice and judicial cooperation.</p>
+        </div>
+      </div>
+
+      <h2>Collaboration</h2>
+      <p>
+        Our institutional partners contribute to the project by:
+      </p>
+      <ul>
+        <li>Providing information on national EEO and EOP enforcement procedures</li>
+        <li>Validating research findings on cross-border enforcement</li>
+        <li>Participating in project events and workshops</li>
+        <li>Disseminating project results to practitioners</li>
+      </ul>
+
+      <h2>Become a Partner</h2>
+      <p>
+        If your organization is interested in collaborating with the DEUCE project, please contact us.
+      </p>
+    </div>
+  </section>
+</Layout>

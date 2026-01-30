@@ -1,0 +1,410 @@
+---
+// Map ISO codes to country slugs and tooltip data
+const countryData: Record<string, {
+  slug: string;
+  name: string;
+  applicableLaw: string;
+  competentCourt: string;
+  legalFees: string;
+}> = {
+  'AT': {
+    slug: 'austria',
+    name: 'Austria',
+    applicableLaw: '§548 of Code of Civil Procedure',
+    competentCourt: 'District Courts/in Vienna the District Court for Commercial Matters',
+    legalFees: 'Fees vary between €23 to €314'
+  },
+  'BE': {
+    slug: 'belgium',
+    name: 'Belgium',
+    applicableLaw: 'None',
+    competentCourt: 'Justice of the Peace/Courts of first instance/Commercial courts',
+    legalFees: 'Fixed rate of €50 per claim'
+  },
+  'BG': {
+    slug: 'bulgaria',
+    name: 'Bulgaria',
+    applicableLaw: 'Chapter 57 CPC',
+    competentCourt: 'District Court',
+    legalFees: '4% of the value of the claim (min. BGN 50)'
+  },
+  'HR': {
+    slug: 'croatia',
+    name: 'Croatia',
+    applicableLaw: 'Under €1,320 Artt. 457-467 CPA (civil procedure act)',
+    competentCourt: 'Municipal/Commercial court',
+    legalFees: '3.2% of the value of the claim'
+  },
+  'CY': {
+    slug: 'cyprus',
+    name: 'Cyprus',
+    applicableLaw: 'Procedural Regulation of 2008 on the European Small Claims Procedure',
+    competentCourt: 'District Courts',
+    legalFees: 'None'
+  },
+  'CZ': {
+    slug: 'czechia',
+    name: 'Czechia',
+    applicableLaw: 'None',
+    competentCourt: 'District Courts',
+    legalFees: 'Value < CZK 20,000: CZK 1,000 / Value > CZK 20,000: 5% of the value'
+  },
+  'EE': {
+    slug: 'estonia',
+    name: 'Estonia',
+    applicableLaw: '§405 of the Estonian Code of Civil Procedure',
+    competentCourt: 'County Courts',
+    legalFees: 'Fees vary between €75 to €400'
+  },
+  'FI': {
+    slug: 'finland',
+    name: 'Finland',
+    applicableLaw: 'Law 753/2008',
+    competentCourt: 'Helsinki District Court',
+    legalFees: '€134 for an amount of €5,000'
+  },
+  'FR': {
+    slug: 'france',
+    name: 'France',
+    applicableLaw: 'None',
+    competentCourt: 'Local chamber of judicial court/Commercial court',
+    legalFees: 'None'
+  },
+  'DE': {
+    slug: 'germany',
+    name: 'Germany',
+    applicableLaw: 'Artt. 1097-1109 CPC',
+    competentCourt: 'Municipal courts',
+    legalFees: '€114 for €500 to max €483 for €5,000'
+  },
+  'GR': {
+    slug: 'greece',
+    name: 'Greece',
+    applicableLaw: 'None',
+    competentCourt: 'District Civil Courts',
+    legalFees: '1.14% of the value of the claim/no fees for claims < €200'
+  },
+  'HU': {
+    slug: 'hungary',
+    name: 'Hungary',
+    applicableLaw: 'Act CXXX of 2016 on the Code of Civil Procedure',
+    competentCourt: 'District Courts/in Budapest the Buda Central District Court',
+    legalFees: '6% of the value of the claim (min. HUF 15,000)'
+  },
+  'IE': {
+    slug: 'ireland',
+    name: 'Ireland',
+    applicableLaw: 'Law of S.I. No. 533/2008',
+    competentCourt: 'District Courts',
+    legalFees: 'Fixed fee of €25 per claim'
+  },
+  'IT': {
+    slug: 'italy',
+    name: 'Italy',
+    applicableLaw: 'None',
+    competentCourt: 'Justice of the Peace',
+    legalFees: '€27 lump sum advance/€43 for a value up to €1,100'
+  },
+  'LV': {
+    slug: 'latvia',
+    name: 'Latvia',
+    applicableLaw: 'None',
+    competentCourt: 'District Courts/City Courts',
+    legalFees: '< €2,134: 15% of claim / > €2,135: €320 plus 4%'
+  },
+  'LT': {
+    slug: 'lithuania',
+    name: 'Lithuania',
+    applicableLaw: 'Law on the Implementation of EU and International Legal Acts Regulating Civil Procedure',
+    competentCourt: 'District Courts',
+    legalFees: '3% of the value of the claim (min. €20)'
+  },
+  'LU': {
+    slug: 'luxembourg',
+    name: 'Luxembourg',
+    applicableLaw: 'None',
+    competentCourt: 'Justice of the Peace',
+    legalFees: 'None'
+  },
+  'MT': {
+    slug: 'malta',
+    name: 'Malta',
+    applicableLaw: 'None',
+    competentCourt: 'Small Claims Tribunal',
+    legalFees: '€50 Registry fee + €7 service fee'
+  },
+  'NL': {
+    slug: 'netherlands',
+    name: 'Netherlands',
+    applicableLaw: 'Act of 29 May 2009',
+    competentCourt: 'Subdistrict Court',
+    legalFees: 'Fees vary from €86 to €487'
+  },
+  'PL': {
+    slug: 'poland',
+    name: 'Poland',
+    applicableLaw: 'None',
+    competentCourt: 'District Courts and Regional Court',
+    legalFees: '100 PLN (≈€21.35) for all applications'
+  },
+  'PT': {
+    slug: 'portugal',
+    name: 'Portugal',
+    applicableLaw: 'Law 41/2013',
+    competentCourt: 'District Courts',
+    legalFees: '€102 for an amount within €2,000'
+  },
+  'RO': {
+    slug: 'romania',
+    name: 'Romania',
+    applicableLaw: 'None',
+    competentCourt: 'District Courts',
+    legalFees: '< €2,000: 50 RON (€10.16) / > €2,000: 100 RON (€20.34)'
+  },
+  'SK': {
+    slug: 'slovakia',
+    name: 'Slovakia',
+    applicableLaw: 'None',
+    competentCourt: 'District Courts',
+    legalFees: '6% of the value of the claim (50% lower if filed electronically, max €70)'
+  },
+  'SI': {
+    slug: 'slovenia',
+    name: 'Slovenia',
+    applicableLaw: 'Artt. 442-458 Slovenian Civil Procedural Act',
+    competentCourt: 'Local Courts',
+    legalFees: '€54-€255 depending on claim value'
+  },
+  'ES': {
+    slug: 'spain',
+    name: 'Spain',
+    applicableLaw: 'Law 1/2000, implemented by law 4/2011 and law 37/2011',
+    competentCourt: 'Courts of first instance/Commercial court',
+    legalFees: 'None'
+  },
+  'SE': {
+    slug: 'sweden',
+    name: 'Sweden',
+    applicableLaw: 'Act (2008:1038) on European Small Claims Procedure',
+    competentCourt: 'District Courts',
+    legalFees: 'Value < €2,200: €84 / Value > €2,200: €262'
+  },
+};
+
+const euCountries = Object.keys(countryData);
+const base = import.meta.env.BASE_URL;
+---
+
+<div class="map-container">
+  <div class="map-wrapper" id="map-wrapper">
+    <div id="svg-container"></div>
+    <div id="tooltip" class="tooltip"></div>
+  </div>
+</div>
+
+<script define:vars={{ countryData, euCountries, base }}>
+  document.addEventListener('DOMContentLoaded', async () => {
+    const container = document.getElementById('svg-container');
+    const mapWrapper = document.getElementById('map-wrapper');
+    const tooltip = document.getElementById('tooltip');
+
+    // Load SVG
+    try {
+      const response = await fetch(`${base}images/europe.svg`);
+      const svgText = await response.text();
+      container.innerHTML = svgText;
+
+      const svg = container.querySelector('svg');
+      if (svg) {
+        // Adjust viewBox to crop empty space on the left (Iceland starts at ~240)
+        svg.setAttribute('viewBox', '200 0 800 684');
+        svg.removeAttribute('width');
+        svg.removeAttribute('height');
+        svg.style.display = 'block';
+        svg.style.maxWidth = '100%';
+        svg.style.height = 'auto';
+
+        // Style EU countries
+        euCountries.forEach(code => {
+          const country = svg.getElementById(code);
+          if (country) {
+            country.style.fill = '#3182ce';
+            country.style.cursor = 'pointer';
+            country.style.transition = 'fill 0.2s';
+
+            const data = countryData[code];
+
+            country.addEventListener('mouseenter', (e) => {
+              country.style.fill = '#1a365d';
+              if (tooltip && data) {
+                tooltip.innerHTML = `
+                  <div class="tooltip-header">${data.name}</div>
+                  <div class="tooltip-content">
+                    <div class="tooltip-row">
+                      <span class="tooltip-label">Applicable Law:</span>
+                      <span class="tooltip-value">${data.applicableLaw}</span>
+                    </div>
+                    <div class="tooltip-row">
+                      <span class="tooltip-label">Competent Court (1st Instance):</span>
+                      <span class="tooltip-value">${data.competentCourt}</span>
+                    </div>
+                    <div class="tooltip-row">
+                      <span class="tooltip-label">Legal Fees:</span>
+                      <span class="tooltip-value">${data.legalFees}</span>
+                    </div>
+                  </div>
+                  <div class="tooltip-footer">Click for full details</div>
+                `;
+                tooltip.style.display = 'block';
+              }
+            });
+
+            country.addEventListener('mousemove', (e) => {
+              if (tooltip) {
+                const rect = mapWrapper.getBoundingClientRect();
+                let x = e.clientX - rect.left + 15;
+                let y = e.clientY - rect.top + 15;
+
+                const tooltipWidth = tooltip.offsetWidth;
+                const tooltipHeight = tooltip.offsetHeight;
+
+                if (x + tooltipWidth > rect.width - 10) {
+                  x = e.clientX - rect.left - tooltipWidth - 15;
+                }
+                if (y + tooltipHeight > rect.height - 10) {
+                  y = e.clientY - rect.top - tooltipHeight - 15;
+                }
+
+                tooltip.style.left = Math.max(10, x) + 'px';
+                tooltip.style.top = Math.max(10, y) + 'px';
+              }
+            });
+
+            country.addEventListener('mouseleave', () => {
+              country.style.fill = '#3182ce';
+              if (tooltip) {
+                tooltip.style.display = 'none';
+              }
+            });
+
+            country.addEventListener('click', (e) => {
+              if (data?.slug) {
+                window.location.href = `${base}countries/${data.slug}/`;
+              }
+            });
+          }
+        });
+
+        // Style non-EU countries
+        const allPaths = svg.querySelectorAll('path');
+        allPaths.forEach(path => {
+          const id = path.getAttribute('id');
+          if (id && !euCountries.includes(id)) {
+            path.style.fill = '#e2e8f0';
+          }
+        });
+      }
+    } catch (error) {
+      console.error('Failed to load SVG:', error);
+      container.innerHTML = '<p>Failed to load map</p>';
+    }
+  });
+</script>
+
+<style>
+  .map-container {
+    text-align: center;
+    padding: 1rem 0;
+  }
+
+  .map-wrapper {
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
+    background: #f7fafc;
+    border-radius: 8px;
+    border: 1px solid var(--color-border);
+    overflow: hidden;
+  }
+
+  #svg-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  #svg-container svg {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .tooltip {
+    position: absolute;
+    display: none;
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    padding: 0;
+    z-index: 1000;
+    pointer-events: none;
+    min-width: 280px;
+    max-width: 320px;
+    font-size: 0.9rem;
+    text-align: left;
+  }
+
+  /* Hide map on mobile */
+  @media (max-width: 768px) {
+    .map-container {
+      display: none;
+    }
+  }
+</style>
+
+<style is:global>
+  .tooltip-header {
+    background: var(--color-primary, #1a365d);
+    color: white;
+    padding: 0.75rem 1rem;
+    font-weight: 600;
+    font-size: 1rem;
+    border-radius: 7px 7px 0 0;
+  }
+
+  .tooltip-content {
+    padding: 0.75rem 1rem;
+  }
+
+  .tooltip-row {
+    margin-bottom: 0.5rem;
+  }
+
+  .tooltip-row:last-child {
+    margin-bottom: 0;
+  }
+
+  .tooltip-label {
+    display: block;
+    font-weight: 600;
+    color: #4a5568;
+    font-size: 0.8rem;
+    margin-bottom: 0.15rem;
+  }
+
+  .tooltip-value {
+    display: block;
+    color: #2d3748;
+  }
+
+  .tooltip-footer {
+    background: #f7fafc;
+    color: #718096;
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+    text-align: center;
+    border-radius: 0 0 7px 7px;
+    border-top: 1px solid #e2e8f0;
+  }
+</style>
