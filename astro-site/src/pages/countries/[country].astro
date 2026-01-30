@@ -2,6 +2,8 @@
 import Layout from '../../layouts/Layout.astro';
 import countriesData from '../../data/countries.json';
 
+const base = import.meta.env.BASE_URL;
+
 // Country metadata
 const countryMeta: Record<string, { flag: string }> = {
   'austria': { flag: '🇦🇹' },
@@ -74,12 +76,12 @@ const content = processContent(rawContent);
 const hasContent = content.length > 0;
 ---
 
-<Layout title={`${countryName} - ESCP Enforcement`}>
+<Layout title={`${countryName} - EEO/EOP Enforcement`}>
   <div class="page-header">
     <div class="container">
       <h1><span class="flag">{meta.flag}</span> {countryName}</h1>
       <p class="breadcrumb">
-        <a href="/">Home</a> / <a href="/#countries">Countries</a> / {countryName}
+        <a href={base}>Home</a> / <a href={`${base}#countries`}>Countries</a> / {countryName}
       </p>
     </div>
   </div>
@@ -90,21 +92,21 @@ const hasContent = content.length > 0;
         <div class="country-content" set:html={content} />
       ) : (
         <div class="no-content">
-          <p>Information about ESCP enforcement procedures in {countryName} is not yet available.</p>
-          <p>Please check back later or visit the SCAN2 Platform for more information.</p>
+          <p>Information about EEO/EOP enforcement procedures in {countryName} is coming soon.</p>
+          <p>Please check back later or visit the DEUCE Platform for more information.</p>
         </div>
       )}
 
       <div class="card platform-cta">
-        <h3>Access the SCAN2 Platform</h3>
-        <p>For the most up-to-date and detailed information about enforcement procedures in {countryName}, visit the SCAN2 Platform.</p>
-        <a href="https://portal.scan2.vub.be" class="btn" target="_blank" rel="noopener noreferrer">
-          Go to SCAN2 Portal
+        <h3>Access the DEUCE Platform</h3>
+        <p>For the most up-to-date and detailed information about EEO/EOP enforcement procedures in {countryName}, visit the DEUCE Platform.</p>
+        <a href="https://deuce.scan2project.org/home" class="btn" target="_blank" rel="noopener noreferrer">
+          Go to DEUCE Platform
         </a>
       </div>
 
       <div class="back-link">
-        <a href="/">&larr; Back to Home</a>
+        <a href={base}>&larr; Back to Home</a>
       </div>
     </div>
   </section>

@@ -1,19 +1,20 @@
 ---
 import Layout from '../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL;
 ---
 
 <Layout title="Institutional Partners">
   <div class="page-header">
     <div class="container">
       <h1>Institutional Partners</h1>
-      <p class="breadcrumb"><a href="/">Home</a> / <a href="/network">Network</a> / Institutional Partners</p>
+      <p class="breadcrumb"><a href={base}>Home</a> / <a href={`${base}project-partners/`}>Network</a> / Institutional Partners</p>
     </div>
   </div>
 
   <section class="content">
     <div class="container">
       <p>
-        The SCAN II project collaborates with national enforcement authorities, judicial bodies, and
+        The DEUCE project collaborates with national enforcement authorities, judicial bodies, and
         professional organizations across Europe to ensure our research and platform reflect real-world
         practice.
       </p>
@@ -52,7 +53,7 @@ import Layout from '../layouts/Layout.astro';
 
       <h2>Become a Partner</h2>
       <p>
-        If your organization is interested in collaborating with the SCAN II project, please contact us.
+        If your organization is interested in collaborating with the DEUCE project, please contact us.
       </p>
     </div>
   </section>

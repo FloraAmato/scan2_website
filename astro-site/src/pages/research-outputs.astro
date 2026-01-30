@@ -1,59 +1,49 @@
 ---
 import Layout from '../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL;
 ---
 
 <Layout title="Research Outputs">
   <div class="page-header">
     <div class="container">
       <h1>Research Outputs</h1>
-      <p class="breadcrumb"><a href="/">Home</a> / Research</p>
+      <p class="breadcrumb"><a href={base}>Home</a> / Research</p>
     </div>
   </div>
 
   <section class="content">
     <div class="container">
       <p>
-        The SCAN II project produces comprehensive research on the enforcement of EU civil procedures
-        across Member States. Below you can find our main research outputs.
+        The DEUCE project produces comprehensive research on the enforcement of European Enforcement Orders (EEO)
+        and European Orders for Payment (EOP) across EU Member States. Below you can find our main research outputs.
       </p>
 
       <div class="research-item">
-        <h2>Comparative and Analytical Study</h2>
+        <h2>EEO/EOP Roadmap</h2>
         <p>
-          The "Comparative and Analytical Study of Best Practices" examines enforcement procedures for
-          ESCP judgments across all EU Member States, identifying best practices and areas for
-          improvement in cross-border enforcement.
+          The DEUCE Roadmap provides comprehensive guidance on enforcement procedures for EEO and EOP
+          decisions across all EU Member States, helping legal professionals and citizens navigate
+          cross-border enforcement.
         </p>
-        <p>
-          <a href="/documents/comparative-study.pdf" class="btn" download>Download Comparative Study (PDF)</a>
-        </p>
+        <p class="coming-soon">Coming soon</p>
       </div>
 
       <div class="research-item">
-        <h2>SCAN2 Platform Walkthrough</h2>
+        <h2>Comparative Study</h2>
         <p>
-          Watch a demonstration of the SCAN2 Platform by the DIKE research team, showcasing how to navigate
-          and use the platform for accessing enforcement information across EU Member States.
+          Our comparative study examines enforcement procedures for EEO and EOP decisions across
+          EU Member States, identifying best practices and areas for improvement in cross-border enforcement.
         </p>
-        <div class="video-container">
-          <iframe
-            src="https://www.youtube.com/embed/2czOLvXHggY"
-            title="SCAN 2 - Small Claims Analysis Net - The newest platform"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin"
-            allowfullscreen>
-          </iframe>
-        </div>
+        <p class="coming-soon">Coming soon</p>
       </div>
 
       <div class="research-item">
         <h2>Access the Platform</h2>
         <p>
-          For detailed information on enforcement procedures in each Member State, visit our SCAN2 Platform.
+          For detailed information on EEO/EOP enforcement procedures in each Member State, visit our DEUCE Platform.
         </p>
         <p>
-          <a href="https://portal.scan2.vub.be" class="btn btn-accent" target="_blank" rel="noopener noreferrer">Access SCAN2 Platform</a>
+          <a href="https://deuce.scan2project.org/home" class="btn btn-accent" target="_blank" rel="noopener noreferrer">Access DEUCE Platform</a>
         </p>
       </div>
     </div>

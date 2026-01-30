@@ -242,6 +242,17 @@ h3 { font-size: 1.5rem; }
   background: #d35400;
 }
 
+/* Coming soon badge */
+.coming-soon {
+  display: inline-block;
+  background: var(--color-background-alt);
+  color: var(--color-text-light);
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-style: italic;
+  font-size: 0.9rem;
+}
+
 /* Tables */
 table {
   width: 100%;

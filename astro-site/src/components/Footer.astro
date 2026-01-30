@@ -1,4 +1,5 @@
 ---
+const base = import.meta.env.BASE_URL;
 const currentYear = new Date().getFullYear();
 ---
 
@@ -6,24 +7,23 @@ const currentYear = new Date().getFullYear();
   <div class="container">
     <div class="footer-content">
       <div class="footer-section">
-        <h3>SCAN II Project</h3>
-        <p>Supporting the digitalization of cross-border enforcement of civil claims in Europe.</p>
+        <h3>DEUCE Project</h3>
+        <p>Improving the enforcement of judicial decisions in cross-border pecuniary claims across the European Union.</p>
         <div class="eu-funding">
-          <img src="/images/eu-flag.png" alt="European Union" class="eu-flag" />
+          <img src={`${base}images/eu-flag.png`} alt="European Union" class="eu-flag" />
           <p>Co-funded by the European Union's Justice Programme (2021-2027)</p>
         </div>
       </div>
       <div class="footer-section">
         <h3>Contact</h3>
-        <p>Digitalization and Access to Justice (DIKE)</p>
-        <p>Vrije Universiteit Brussel (VUB)</p>
-        <p>Brussels, Belgium</p>
-        <p><a href="mailto:marco.giacalone@vub.be">marco.giacalone@vub.be</a></p>
+        <p>University of Naples Federico II (UNINA)</p>
+        <p>Naples, Italy</p>
+        <p><a href="mailto:deuce@unina.it">deuce@unina.it</a></p>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>&copy; {currentYear} SCAN II Project. All rights reserved.</p>
-      <p><a href="/privacy-policy">Privacy Policy</a></p>
+      <p>&copy; {currentYear} DEUCE Project. All rights reserved.</p>
+      <p><a href={`${base}privacy-policy/`}>Privacy Policy</a></p>
     </div>
   </div>
 </footer>

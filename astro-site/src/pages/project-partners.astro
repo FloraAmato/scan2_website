@@ -1,66 +1,67 @@
 ---
 import Layout from '../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL;
 
 const partners = [
   {
+    name: 'University of Naples Federico II (UNINA)',
+    country: 'Italy',
+    role: 'Coordinator',
+    url: 'https://www.unina.it',
+  },
+  {
     name: 'Vrije Universiteit Brussel (VUB)',
     country: 'Belgium',
-    role: 'Coordinator',
+    role: 'Partner',
     url: 'https://www.vub.be',
   },
   {
-    name: 'Univerza v Ljubljani (UL)',
+    name: 'University of Ljubljana (UL)',
     country: 'Slovenia',
     role: 'Partner',
     url: 'https://www.uni-lj.si',
   },
   {
-    name: 'Sveučilište u Zagrebu – Pravni Fakultet (UniZg)',
-    country: 'Croatia',
-    role: 'Partner',
-    url: 'https://www.pravo.unizg.hr',
-  },
-  {
-    name: 'Vilniaus Universitetas (VU)',
+    name: 'Vilnius University (VU)',
     country: 'Lithuania',
     role: 'Partner',
     url: 'https://www.vu.lt',
   },
   {
-    name: 'Adiconsum Associazione Difesa Consumatori APS (ADICONSUM)',
-    country: 'Italy',
+    name: 'University of Zagreb (UniZG)',
+    country: 'Croatia',
     role: 'Partner',
-    url: 'https://www.adiconsum.it',
+    url: 'https://www.pravo.unizg.hr',
   },
   {
-    name: 'Fondation de la Chambre Européenne des Huissiers de Justice (EUBF)',
-    country: 'Belgium',
+    name: 'University of Malta (UM)',
+    country: 'Malta',
     role: 'Partner',
-    url: 'https://www.uihj.com',
+    url: 'https://www.um.edu.mt',
+  },
+  {
+    name: 'University of Cyprus (UCY)',
+    country: 'Cyprus',
+    role: 'Partner',
+    url: 'https://www.ucy.ac.cy',
+  },
+  {
+    name: 'Centro di Studi Giuridici Latinoamericani (CSGLA-UniRoma Tor Vergata)',
+    country: 'Italy',
+    role: 'Partner',
+    url: 'https://www.csgla.uniroma2.it',
+  },
+  {
+    name: 'European University Institute (EUI)',
+    country: 'Italy',
+    role: 'Partner',
+    url: 'https://www.eui.eu',
   },
   {
     name: 'Fondazione Bruno Kessler (FBK)',
     country: 'Italy',
     role: 'Partner',
     url: 'https://www.fbk.eu',
-  },
-  {
-    name: 'Tallinna Tehnikaülikool (TalTech)',
-    country: 'Estonia',
-    role: 'Partner',
-    url: 'https://taltech.ee',
-  },
-  {
-    name: 'Zentrum für Europäischen Verbraucherschutz e.V. (ZEV)',
-    country: 'Germany',
-    role: 'Partner',
-    url: 'https://www.evz.de',
-  },
-  {
-    name: 'Fédération des Barreaux d\'Europe (FBE)',
-    country: 'France',
-    role: 'Partner',
-    url: 'https://www.fbe.org',
   }
 ];
 ---
@@ -69,16 +70,16 @@ const partners = [
   <div class="page-header">
     <div class="container">
       <h1>Project Partners</h1>
-      <p class="breadcrumb"><a href="/">Home</a> / Partners</p>
+      <p class="breadcrumb"><a href={base}>Home</a> / Partners</p>
     </div>
   </div>
 
   <section class="content">
     <div class="container">
       <p>
-        The SCAN II project brings together a consortium of leading European universities, research
-        institutions, and professional organizations with expertise in EU civil procedure, enforcement
-        law, consumer protection, and information technology.
+        The DEUCE project brings together a consortium of leading European universities, research
+        institutions, and academic centers with expertise in EU civil procedure, enforcement
+        law, and information technology.
       </p>
 
       <div class="card-grid" style="margin-top: 2rem;">

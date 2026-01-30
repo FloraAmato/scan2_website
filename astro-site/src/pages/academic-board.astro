@@ -1,19 +1,20 @@
 ---
 import Layout from '../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL;
 ---
 
 <Layout title="Academic Board">
   <div class="page-header">
     <div class="container">
       <h1>Academic Board</h1>
-      <p class="breadcrumb"><a href="/">Home</a> / <a href="/network">Network</a> / Academic Board</p>
+      <p class="breadcrumb"><a href={base}>Home</a> / <a href={`${base}project-partners/`}>Network</a> / Academic Board</p>
     </div>
   </div>
 
   <section class="content">
     <div class="container">
       <p>
-        The SCAN II Academic Board consists of leading scholars and researchers specializing in EU civil
+        The DEUCE Academic Board consists of leading scholars and researchers specializing in EU civil
         procedure, enforcement law, and access to justice from across Europe.
       </p>
 
@@ -25,19 +26,19 @@ import Layout from '../layouts/Layout.astro';
 
       <div class="card-grid">
         <div class="card">
-          <h3>VUB Brussels</h3>
+          <h3>University of Naples Federico II</h3>
           <p>Experts in EU civil procedure and judicial cooperation</p>
         </div>
         <div class="card">
-          <h3>University of Ljubljana</h3>
+          <h3>Vrije Universiteit Brussel</h3>
           <p>Specialists in enforcement law and cross-border litigation</p>
         </div>
         <div class="card">
-          <h3>University of Milan</h3>
+          <h3>University of Ljubljana</h3>
           <p>Researchers in European private international law</p>
         </div>
         <div class="card">
-          <h3>University of Vienna</h3>
+          <h3>European University Institute</h3>
           <p>Experts in civil procedure and access to justice</p>
         </div>
       </div>

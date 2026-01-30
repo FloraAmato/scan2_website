@@ -2,16 +2,17 @@
 import Layout from '../layouts/Layout.astro';
 import CountryList from '../components/CountryList.astro';
 import EuropeMap from '../components/EuropeMap.astro';
+const base = import.meta.env.BASE_URL;
 ---
 
 <Layout title="Home">
   <section class="hero">
     <div class="container">
-      <h1>SCAN II Project</h1>
-      <p>Supporting the digitalization of cross-border enforcement of civil claims in Europe</p>
+      <h1>DEUCE Project</h1>
+      <p>Improving the enforcement of judicial decisions in cross-border pecuniary claims across the European Union</p>
       <div style="margin-top: 2rem;">
-        <a href="/about" class="btn">Learn More</a>
-        <a href="https://portal.scan2.vub.be" class="btn btn-accent" style="margin-left: 1rem;" target="_blank" rel="noopener noreferrer">Access Platform</a>
+        <a href={`${base}about/`} class="btn">Learn More</a>
+        <a href="https://deuce.scan2project.org/home" class="btn btn-accent" style="margin-left: 1rem;" target="_blank" rel="noopener noreferrer">Access Platform</a>
       </div>
     </div>
   </section>
@@ -20,9 +21,9 @@ import EuropeMap from '../components/EuropeMap.astro';
     <div class="container">
       <h2 class="text-center">About the Project</h2>
       <p class="text-center text-muted" style="max-width: 800px; margin: 0 auto;">
-        The SCAN II Project is developed upon the results of the SCAN project and aims at contributing to
-        the correct and coherent implementation of EU civil procedures in cross-border cases,
-        enhancing access to justice through the further development of the SCAN e-platform and database.
+        The DEUCE Project focuses on improving the enforcement of judicial decisions in cross-border pecuniary claims
+        through dedicated roadmaps for European Enforcement Orders (EEO) and European Orders for Payment (EOP),
+        enhancing access to justice across the European Union.
       </p>
     </div>
   </section>
@@ -32,7 +33,7 @@ import EuropeMap from '../components/EuropeMap.astro';
       <h2 class="text-center">Explore Enforcement Procedures</h2>
       <EuropeMap />
       <p class="text-center text-muted" style="max-width: 600px; margin: 1rem auto 2rem;">
-        Click on a country for detailed information on enforcement procedures.
+        Click on a country for detailed information on EEO/EOP enforcement procedures.
       </p>
       <CountryList />
     </div>

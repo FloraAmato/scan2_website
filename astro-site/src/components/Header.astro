@@ -1,10 +1,11 @@
 ---
+const base = import.meta.env.BASE_URL;
 const navItems = [
-  { href: '/', label: 'Home' },
-  { href: '/about', label: 'About' },
-  { href: '/project-partners', label: 'Partners' },
-  { href: '/research-outputs', label: 'Research' },
-  { href: '/news-events', label: 'News & Events' },
+  { href: `${base}`, label: 'Home' },
+  { href: `${base}about/`, label: 'About' },
+  { href: `${base}project-partners/`, label: 'Partners' },
+  { href: `${base}research-outputs/`, label: 'Research' },
+  { href: `${base}news-events/`, label: 'News & Events' },
 ];
 
 const currentPath = Astro.url.pathname;
@@ -12,8 +13,8 @@ const currentPath = Astro.url.pathname;
 
 <header class="header">
   <div class="container">
-    <a href="/" class="logo">
-      <img src="/images/logo.png" alt="SCAN II" class="logo-img" />
+    <a href={base} class="logo">
+      <img src={`${base}images/logo-white.svg`} alt="DEUCE" class="logo-img" />
     </a>
     <nav class="nav">
       <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">

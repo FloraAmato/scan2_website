@@ -1,77 +1,55 @@
 ---
 import Layout from '../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL;
 ---
 
 <Layout title="News & Events">
   <div class="page-header">
     <div class="container">
       <h1>News & Events</h1>
-      <p class="breadcrumb"><a href="/">Home</a> / News & Events</p>
+      <p class="breadcrumb"><a href={base}>Home</a> / News & Events</p>
     </div>
   </div>
 
   <section class="content">
     <div class="container">
       <p>
-        Stay updated with the latest news, events, and developments from the SCAN II project.
+        Stay updated with the latest news, events, and developments from the DEUCE project.
       </p>
 
       <div class="news-item">
-        <h2>Final Conference SCAN II Project</h2>
-        <p class="event-date">22-23 February 2024 | Brussels, Belgium</p>
+        <h2>DEUCE Project Launch</h2>
+        <p class="event-date">2024</p>
 
         <p>
-          The Final Conference of the SCAN II Project marked the culmination of our journey with groundbreaking
-          discussions and insights. This event highlighted the possibility to ensure consumer's access to justice
-          in small claims proceedings through an innovative digital platform.
-        </p>
-
-        <div class="event-details">
-          <p><strong>Location:</strong> European Committee of the Regions, Rue Belliard 101; Hoek 38, Rue de Louvain 38, Brussels</p>
-        </div>
-
-        <p>
-          The conference featured an incredible lineup of speakers including Kim Van der Borght, Paul Nemitz,
-          Rimantas Simaitis, Milda Markevičiūtė, Tatjana Josipovic, Thomas Hoffmann, Paola Giacalone,
-          Stefano Menini, Nadia Mana, Paola Pendenza, Maria Dymitruk, Alina Ontanu, Francesca Medda,
-          Annapaola Voto, Nicolas Kyriakides, Michele Angelo Lupoi, Fulvio Maria Palombino, Stefaan Voet,
-          Pietro Ortolani, Marco Farina, Alan Uzelac, Magdalena Jankowska-Gilberg, Rhonson Salim,
-          Elena D'Alessandro, Tatjana Zoroska Kamilovska, Daša Tičar, Lana Gotvan, Clémence Dossier,
-          Gioia Arnone, Seun Lari-Williams, Jachin Van Doninck, Gina Gioia, Sajedeh Salehi, Marco Giacalone,
-          and many more experts in the field.
+          The DEUCE Project has been launched to improve the enforcement of judicial decisions in
+          cross-border pecuniary claims across the European Union. Building on the success of the
+          SCAN and SCAN II projects, DEUCE focuses specifically on European Enforcement Orders (EEO)
+          and European Orders for Payment (EOP).
         </p>
 
         <p>
-          This was an unparalleled opportunity to engage with experts and enthusiasts alike, share knowledge,
-          and network with leaders in the field of digitalization of justice.
+          The project brings together a consortium of ten leading academic institutions and research
+          centers from across Europe, coordinated by the University of Naples Federico II (UNINA).
         </p>
       </div>
 
       <div class="news-item">
-        <h2>Final Conference Video</h2>
+        <h2>Upcoming Events</h2>
         <p>
-          Watch the recording of the SCAN II Project Final Conference:
+          Stay tuned for upcoming workshops, conferences, and stakeholder engagement events.
+          More information will be announced soon.
         </p>
-        <div class="video-container">
-          <iframe
-            src="https://www.youtube.com/embed/u6mJtTJMBbY"
-            title="FINAL CONFERENCE SCAN 2 PROJECT"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin"
-            allowfullscreen>
-          </iframe>
-        </div>
       </div>
 
       <div class="news-item">
-        <h2>SCAN2 Platform Launch</h2>
+        <h2>DEUCE Platform</h2>
         <p>
-          The SCAN2 e-platform is now available, providing comprehensive information on enforcement
+          The DEUCE platform provides comprehensive information on EEO and EOP enforcement
           procedures across EU Member States.
         </p>
         <p>
-          <a href="https://portal.scan2.vub.be" class="btn btn-accent" target="_blank" rel="noopener noreferrer">Access SCAN2 Platform</a>
+          <a href="https://deuce.scan2project.org/home" class="btn btn-accent" target="_blank" rel="noopener noreferrer">Access DEUCE Platform</a>
         </p>
       </div>
     </div>
